@@ -9,3 +9,19 @@
 
     <p>If you haven't already given the documentation a read, head over to <a href="http://docs.wagtail.io/">http://docs.wagtail.io</a> to start building on Wagtail</p>
 {% endblock %}
+
+
+
+{% block js %}
+<!--[if lt IE 8 ]>
+  <script async type="text/javascript" src="<%- @site.url %>scripts/homeIE7.js"></script>
+<![endif]-->
+<!--[if IE 8 ]>
+  <script async type="text/javascript" src="<%- @site.url %>scripts/homeIE8.js"></script>
+<![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->
+  <script async type="text/javascript" src="<%- @site.url %>scripts/homeElse.js"></script>
+<!--<![endif]-->
+
+<script type="text/javascript" src="http://imageserver.ebscohost.com/branding/tabbedsearch/js/FormProcessing.js"></script>
+{% endblock %}
