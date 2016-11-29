@@ -12,6 +12,6 @@ RUN npm install -g bower
 
 WORKDIR /app
 ADD requirements/*.txt /app/requirements/
+RUN bower install --allow-root
 RUN pip install -r requirements/$env.txt
-RUN bower install
 ADD . /app
