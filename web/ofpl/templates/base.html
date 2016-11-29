@@ -218,7 +218,7 @@ Attention:  <%- alert %>
         <span id="menuText" class="sb-toggle-left">Menu</a>
       </li>
     </ul>
-    <img id="mobile-logo" class="show-for-small-only" src="<%- @site.url %>images/ofpl_logo.png">
+    <img id="mobile-logo" class="show-for-small-only" src="{% static 'images/ofpl_logo.png' %}">
   </div>
   <!-- Menu Button -->
 
@@ -509,7 +509,7 @@ Attention:  <%- alert %>
 <div class="row">
   <div class="medium-8 columns">
     <a href="<%- @site.url %>">
-      <img id="footer-logo" src="<%- @site.url %>images/ofpl_logo.png">
+      <img id="footer-logo" src="{% static 'images/ofpl_logo.png' %}">
     </a>
     <ul class="footer-links">
       <li><a href="<%- @site.url %>about">About</a></li>
@@ -560,12 +560,12 @@ Attention:  <%- alert %>
 		</ul>
 	  </nav>
     <ul id="off-canvas-social" class="inline-list social-topbar">
-      <li><a class="sb-close" href="https://www.facebook.com/ofallonlibrary"><img src="<%- @site.url %>images/social/topbar/Facebook.png"></a></li>
-      <li><a class="sb-close" href="https://twitter.com/ofallonlibrary"><img src="<%- @site.url %>images/social/topbar/Twitter.png"></a></li>
-      <!--<li><a class="sb-close" href="https://plus.google.com/114570487730985673506/"><img src="<%- @site.url %>images/social/topbar/Google+.png"></a></li>-->
-      <li><a class="sb-close" href="http://www.pinterest.com/ofallonlibrary/"><img src="<%- @site.url %>images/social/topbar/Pinterest.png"></a></li>
-      <li><a class="sb-close" href="https://www.youtube.com/channel/UCU9KeZou3gxQZWxMnnJhAhg"><img src="<%- @site.url %>images/social/topbar/youtube.png"></a></li>
-      <li class="sb-open-right"><a href="#connectheader"><img src="<%- @site.url %>images/social/topbar/more.png"></a></li>
+      <li><a class="sb-close" href="https://www.facebook.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Facebook.png' %}"></a></li>
+      <li><a class="sb-close" href="https://twitter.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Twitter.png' %}"></a></li>
+      <!--<li><a class="sb-close" href="https://plus.google.com/114570487730985673506/"><img src="{% static 'images/social/topbar/Google+.png' %}"></a></li>-->
+      <li><a class="sb-close" href="http://www.pinterest.com/ofallonlibrary/"><img src="{% static 'images/social/topbar/Pinterest.png' %}"></a></li>
+      <li><a class="sb-close" href="https://www.youtube.com/channel/UCU9KeZou3gxQZWxMnnJhAhg"><img src="{% static 'images/social/topbar/youtube.png' %}"></a></li>
+      <li class="sb-open-right"><a href="#connectheader"><img src="{% static 'images/social/topbar/more.png' %}"></a></li>
     </ul>
 
     <div id="sb-info" class="hide-for-medium-up">
