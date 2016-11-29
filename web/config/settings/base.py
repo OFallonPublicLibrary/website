@@ -13,7 +13,7 @@ STATIC_ROOT = BASE_DIR.child("ofpl").child("static");
 STATICFILES_DIRS = [
 
 ]
-STATICFILE_FINDERS = [
+STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 
@@ -82,6 +82,7 @@ WAGTAIL_APPS = [
 ]
 
 PROJECT_APPS = [
+    'ofpl.core',
     'ofpl.home',
     'ofpl.search',
 ]
