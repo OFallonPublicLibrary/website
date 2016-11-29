@@ -30,7 +30,7 @@ htmlmin: true
         {% endcompress %}
 
         <!--[if lt IE 8]>
-        <link rel="stylesheet" type="text/css" href="<%- @site.url %>styles/ie7font.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ie7font.css' %}">
         <![endif]-->
 
         {% block extra_css %}
@@ -44,77 +44,77 @@ htmlmin: true
         <!-- Favicons -->
 		<link rel="icon"
 			type="image/png"
-			href="<%- @site.url %>images/icons-startup-imgs/16.png">
+			href="{% static 'images/icons-startup-imgs/16.png' %}">
 		<link rel="icon"
 			type="image/png"
-			href="<%- @site.url %>images/icons-startup-imgs/32.png"
+			href="{% static 'images/icons-startup-imgs/32.png' %}"
 			sizes="32x32">
 		<link rel="icon"
 			type="image/png"
-			href="<%- @site.url %>images/icons-startup-imgs/48.png"
+			href="{% static 'images/icons-startup-imgs/48.png' %}"
 			sizes="48x48">
 		<link rel="icon"
 			type="image/png"
-			href="<%- @site.url %>images/icons-startup-imgs/64.png"
+			href="{% static 'images/icons-startup-imgs/64.png' %}"
 			sizes="64x64">
 
 
 		<!-- Apple Touch Icons -->
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/120.png"
+			href="{% static 'images/icons-startup-imgs/120.png' %}"
 			sizes="120x120">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/152.png"
+			href="{% static 'images/icons-startup-imgs/152.png' %}"
 			sizes="152x152">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/76.png"
+			href="{% static 'images/icons-startup-imgs/76.png' %}"
 			sizes="76x76">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/114.png"
+			href="{% static 'images/icons-startup-imgs/114.png' %}"
 			sizes="114x114">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/57.png"
+			href="{% static 'images/icons-startup-imgs/57.png' %}"
 			sizes="57x57">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/144.png"
+			href="{% static 'images/icons-startup-imgs/144.png' %}"
 			sizes="144x144">
 		<link rel="apple-touch-icon"
-			href="<%- @site.url %>images/icons-startup-imgs/72.png"
+			href="{% static 'images/icons-startup-imgs/72.png' %}"
 			sizes="72x72">
 
 		<!-- Startup Images -->
 		<!-- iPhone 5, 5S, 5C -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/1096.png"
+	<link href="{% static 'images/icons-startup-imgs/1096.png' %}"
 			media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPhone 4, 4S -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/920.png"
+	<link href="{% static 'images/icons-startup-imgs/920.png' %}"
 			media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPhone, 3G, 3GS -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/460.png"
+	<link href="{% static 'images/icons-startup-imgs/460.png' %}"
 			media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPad Retina, Mini Retina Portrait -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/2008.png"
+	<link href="{% static 'images/icons-startup-imgs/2008.png' %}"
 			media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPad Retina, Mini Retina Landscape -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/1496.png"
+	<link href="{% static 'images/icons-startup-imgs/1496.png' %}"
 			media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPad, Mini Portrait -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/1004.png"
+	<link href="{% static 'images/icons-startup-imgs/1004.png' %}"
 			media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)"
 			rel="apple-touch-startup-image">
 
 		<!-- iPad, Mini Landscape -->
-	<link href="<%- @site.url %>images/icons-startup-imgs/748.png"
+	<link href="{% static 'images/icons-startup-imgs/748.png' %}"
 			media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)"
 			rel="apple-touch-startup-image">
 
@@ -122,8 +122,14 @@ htmlmin: true
 
     </head>
 
-    <body id="top" class="{% block body_class %}{% endblock %} nofocushighlight <%- if alert.match(/<p>/) then 'siteAlert ' %><%- if @document.skin is 'kids' then 'kids' %><%- if @document.skin is 'teens' then 'teens' %>">
-  {% wagtailuserbar %}
+    <body id="top" class="
+      {% block body_class %}{% endblock %}
+      nofocushighlight
+      <%- if alert.match(/<p>/) then 'siteAlert ' %>
+      <%- if @document.skin is 'kids' then 'kids' %>
+      <%- if @document.skin is 'teens' then 'teens' %>
+    ">
+      {% wagtailuserbar %}
   <a tabindex="1" class="adaHide sb-toggle-left" href="#navigation" onclick="window.setTimeout(function (){document.getElementById('homeLink').focus();}, 20);">Skip to Navigation</a>
   <a tabindex="2" class="adaHide" href="#mainContent" onclick="<%- if @document.title is 'Home' then "var adaLink = document.getElementById('homeFirstContentElement');adaLink.focus();adaLink.scrollTo();" else "window.setTimeout(function (){var adaLink = document.getElementById('breadcrumbHome');adaLink.focus();adaLink.scrollTo();}, 20);" %>">Skip to Content</a>
 
