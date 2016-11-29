@@ -1,0 +1,9 @@
+{
+  "name": "ofpl",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "foundation": "5.0.2",
+    "Slidebars": "slidebars#0.10.2"
+  }
+}

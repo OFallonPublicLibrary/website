@@ -1,0 +1,50 @@
+#teensheaderimg{
+	width: 100%;
+	height: 188px;
+	position: absolute;
+	/* background-color: #febd15; */
+	background: no-repeat top url('#{$root_url}images/bkg_hdr_teens.png');
+	background-size: 1086px;
+	z-index: -5;
+}
+.siteAlert #teensheaderimg{
+	top: 61px;
+}
+
+.teens #header{
+	background: transparent;
+    color: black;
+}
+
+.teens #header{
+	background: transparent;
+    color: black;
+}
+
+.teens #logo{
+	position: relative;
+	margin-top: 36px;
+	left: 67px;
+}
+.siteAlert .teens #logo{
+	margin-top: 117px;
+}
+
+.teens #skipSearchLink{
+	top: 15px;
+}
+.teens #skipSearchLink:focus{
+	top: -20px;
+}
+
+@media only screen and (max-width: 1087px){
+  #teensheaderimg{
+  	background-size: 100%;
+  }
+}
+
+@media only screen and (max-width: 1020px){
+	.teens #logo{
+		margin-top: 9px;
+	}
+}

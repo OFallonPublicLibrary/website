@@ -1,0 +1,171 @@
+.calendar-day{
+	position: relative;
+	width: 14.2857142%;
+}
+
+.calendar-day:last-child{
+	float: right;
+}
+
+
+ ol.calendar{
+	margin:0 auto;
+	display:block;
+	//min-height: 200px;
+	//background: #444;
+	padding: 12px 0px 0px 0px;
+}
+
+.calendar li{
+	list-style:none;
+}
+
+.calendar p.link{
+	text-align:center;
+	display: block;
+}
+
+// Day Styles
+.calendar li li		{
+	width:100%;
+	float:left;
+	margin:.2em;
+ 	padding:.2em;
+ 	overflow:initial;
+	background: #FFF0AD;
+	font-size: 150%;
+}
+
+.calendar.labels li li{
+    min-height: initial;
+    text-align: center;
+    background: initial;	
+}
+
+.empty{
+	display: none;
+}
+
+.calendar li li li{
+	min-height: initial;
+}
+
+.calendar li li ul{
+	margin-left: 0.75rem;
+	font-size: 90%;
+}
+
+@media #{$large-up} {
+	.calendar li li {
+		min-height: 9rem;
+		width: 13%;
+		font-size: 128%;
+	}
+	.empty{
+		display: block;
+	}
+	.calendar li li ul{
+		font-size: 100%;
+	}
+}
+
+// Day Content
+.calendar li li p	 {font-size:1em;display:block;}
+.calendar li li ol	 {width:auto;}
+.calendar li li ul li,
+.calendar li li ol li     {
+	font-size:.55em;
+	display:block;
+	height:auto;
+	width:auto;
+	background: none;
+	margin:0;
+	padding:.2em 0;
+	float:none;
+}
+
+@media #{$small-only} {
+.calendar ol li ol{
+	margin-left: 0;
+    margin-right: 7px;
+}
+}
+
+// Holiday Classes
+//li li.holiday    {  }
+
+// Inactive months
+li#lastmonth li,
+li#nextmonth li    {
+	background: #D4C891;
+	display: none;
+}
+
+@media #{$large-up} {
+	li#lastmonth li,
+	li#nextmonth li{
+		display: block;
+	}
+}
+
+.canceledEvent{
+  text-decoration: line-through;
+}
+
+.catKids,
+.catTeens,
+.catAdults,
+.catGeneral,
+.catHoliday{
+  padding-left: 1em;
+}
+
+.catKids:before {
+    color: red;
+    content: "■ ";
+  	font-size: 1.3em;
+}
+
+.catTeens:before {
+    color: orange;
+    content: "■ ";
+  	font-size: 1.3em;
+}
+
+.catAdults:before {
+    color: green;
+    content: "■ ";
+  	font-size: 1.3em;
+}
+
+.catGeneral:before {
+    color: black;
+    content: "■ ";
+  	font-size: 1.3em;
+}
+
+.catHoliday:before {
+    color: blue;
+    content: "■ ";
+  	font-size: 1.3em;
+}
+
+#catKeyMobile{
+	background: white;
+	margin-top: 1rem;
+	border: solid 3px #ddf;
+	padding: 8px;
+	ul{
+		margin-left: 0;
+		li{
+			display: inline-block;
+		}
+	}
+}
+
+#catKeyNonMobile{
+    ul{
+    	margin-left: 0;
+    	list-style-type: none;
+    }
+}

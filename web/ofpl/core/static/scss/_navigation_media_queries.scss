@@ -1,0 +1,38 @@
+.hide-for-custom-small{
+	display: none;
+}
+
+@media only screen and (min-width: 769px){
+	.hide-for-custom-small{
+		display: block;
+	}
+}
+
+.hide-for-custom-larger{
+	display: block;
+}
+
+@media only screen and (min-width: 769px){
+	.hide-for-custom-larger{
+		display: none;
+	}
+}
+
+// Prevents the desktop nav from stacking
+@media only screen and (max-width: 897px){
+  .top-nav-link {
+    padding: 0 10px !important;
+  }
+}
+
+@media only screen and (max-width: 841px){
+  
+  .top-bar-section .has-dropdown>a {
+    padding-right: 25px!important;
+  }
+
+  .top-bar-section .has-dropdown>a:after{
+    margin-right: 10px;
+  }
+  
+}

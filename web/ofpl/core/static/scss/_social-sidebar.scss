@@ -1,0 +1,25 @@
+#connectheader{
+	font-size: 1.8rem;
+	font-family: 'Francois One', sans-serif;
+	color: #fff;
+}
+.socialIcons li{
+	text-align: center !important;
+}
+
+.socialIcons li a{
+	color: white;
+	font-family: 'Francois One', sans-serif;
+}
+.socialIcons li a:focus{
+	color: black;
+}
+.nofocushighlight .socialIcons li a:focus{
+	color: white;
+}
+
+hr.sidebar {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}

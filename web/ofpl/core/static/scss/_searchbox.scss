@@ -1,0 +1,214 @@
+$root_url: 'http://ofpl.info/';
+
+.srchbx_wrapper{
+	margin:0;
+	padding:0;
+	position: absolute;
+	top:5px;
+	left:0px;
+	width:100%;
+	z-index: 30;
+}
+.srchbx_wrapper input[type="text"],
+ul.srchbx_dropdown{
+	//border:1px solid #fff;
+	background: #fafafa; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#fafafa)); 
+	background: -moz-linear-gradient(top, #f2f2f2, #fafafa);
+	font-size:24px;
+	font-family:"Myriad Pro", "Trebuchet MS", sans-serif;
+	outline:none;
+	width:295px;
+	width: calc(100% - 66px);
+	float:left;
+	margin: 0px;
+	height: auto;
+}
+
+.srchbx_wrapper input[type="text"]{
+	padding: 6px 5px 6px 20px;
+	border: solid #222;
+	border-width: 6px 0px;
+	-moz-box-shadow:1px 1px 3px #555;
+	-webkit-box-shadow:1px 1px 3px #555;
+	-box-shadow:1px 1px 3px #555;
+	margin-top: -3px;
+}
+
+
+ul.srchbx_dropdown{
+	float:left;
+	list-style:none;
+	width:300px;
+	width: calc(100% - 106px);
+	min-width: 300px;
+	//padding:6px 5px;
+	-moz-border-radius:0px 0px 10px 10px;
+	-webkit-border-bottom-right-radius:10px;
+	-webkit-border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+	background: transparent;
+	z-index: 2000;
+	position: relative;
+	margin-top: -3px;
+	//box-shadow: black 2px 5px 9px;
+}
+
+@media #{$small-only} { 
+.srchbx_wrapper input[type="text"]{
+	width: calc(100% - 52px);
+}
+.srchbx_wrapper{
+	position: relative;
+	top: -25px;
+}
+
+ul.srchbx_dropdown{
+	position: absolute;
+	top: 49px;
+	width: 100%;
+}
+}
+
+ul.srchbx_dropdown li{
+	//font-size:16px;
+	line-height:32px;
+	//height:32px;
+	float:left;
+}
+ul.srchbx_dropdown li input[type="checkbox"]{
+	float:left;
+	margin:10px 4px 0 5px;
+}
+ul.srchbx_dropdown li.srchbx_filter{
+	width:348px;
+	//border:1px solid #f9f9f9;
+	clear:both;
+	background: #ddd;
+	font-size:12px;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	color:#444;
+	height:28px;
+	line-height:16px;
+	padding:5px;
+	//-moz-box-shadow:0px 0px 2px #777;
+	//-webkit-box-shadow:0px 0px 3px #555 inset;
+	//-box-shadow:0px 0px 3px #555 inset;
+
+}
+span.srchbx_up,
+span.srchbx_down{
+	position:absolute;
+	top:3px;
+	left:0px;
+	width:14px;
+	height:41px;
+	background-color:#f2f2f2;
+	background-position:center center;
+	background-repeat: no-repeat;
+	z-index:10;
+	//border:1px solid #fff;
+	-moz-box-shadow:1px 0px 1px #ddd;
+	-webkit-box-shadow:1px 0px 1px #ddd;
+	-box-shadow:1px 0px 1px #ddd;
+	
+}
+span.srchbx_up{
+	background-image:url(#{$root_url}images/up.png);
+}
+span.srchbx_down{
+	background-image:url(#{$root_url}images/down.png);
+}
+input.srchbx_search{
+	background:#f2f2f2 url(#{$root_url}images/search.png) no-repeat center center;
+	height:43px;
+	width:50px;
+	float:left;
+	border:none;
+	margin:3px 0px;
+	//border:1px solid #fff;
+	-moz-box-shadow:1px 1px 3px #555;
+	-webkit-box-shadow:1px 1px 3px #555;
+	-box-shadow:1px 1px 3px #555;
+	outline:none;
+	cursor:pointer;
+}
+input.srchbx_search:hover{
+	background-color:#fff;
+}
+
+
+.searchTab{
+  width: 29%;
+  padding-left: 14px;
+  background: orange;
+  padding-top: 5px;
+  display: inline-block;
+  font-size: 1.5rem;
+  border-right: black 2px solid;
+  height: 43px;
+  a{
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.searchTab:first-of-type{
+  border-radius: 0px 0px 0px 0px;
+}
+
+.searchTab:nth-of-type(1){
+  background: #9b394e;
+}
+
+.searchTab:nth-of-type(2){
+  background: #008cba;
+}
+
+.searchTab:nth-of-type(3){
+  background: #268021;
+  border-radius: 0px 0px 10px 0px;
+}
+
+@media only screen and (max-width: 860px) {
+	ul.srchbx_dropdown li {
+		width: 100%;
+		border: 0px 0px 2px 0px black solid;
+	}
+	.searchTab{
+	    border-width: 0px 0px 2px 0px;
+	}
+	.searchTab:first-of-type{
+	    border-radius: 0px;
+	}
+	.searchTab:nth-of-type(3){
+	    border-radius: 0px 0px 10px 0px;
+	    border-width: 0px;
+	}
+	#closeFilter{
+	    width: 7.3rem;
+	}
+}
+
+
+
+.srchbx_dropdown label{
+	font-size: 1rem;
+}
+
+#closeFilter{
+  width: 7.3rem !important;
+  position: relative;
+  border: solid 3px #333 !important;
+  border-radius: 0px 0px 14px 14px !important;
+  border-top: none;
+  color: black;
+  background: #ccc;
+}
+
+#closeLink{
+  color: black;
+  text-decoration: none;
+}
