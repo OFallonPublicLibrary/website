@@ -1,0 +1,8 @@
+Django
+psycopg2
+gunicorn
+unipath
+wagtail
+django-braces
+django-model-utils
+django-allauth
