@@ -4,12 +4,18 @@ from .secret import Secret
 
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "O'Fallon Public Library"
+BASE_URL = 'http://localhost:8000'
 
 # We are building our relative paths with unipath
 BASE_DIR = Path(__file__).ancestor(3)
 MEDIA_ROOT = BASE_DIR.child("ofpl").child("media");
 STATIC_ROOT = BASE_DIR.child("ofpl").child("static");
 STATICFILES_DIRS = [
+
+]
+STATICFILE_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 
 ]
 
@@ -75,7 +81,8 @@ WAGTAIL_APPS = [
 ]
 
 PROJECT_APPS = [
-    'ofpl.core',
+    'ofpl.home',
+    'ofpl.search',
 ]
 
 INSTALLED_APPS = STOCK_APPS + SOCIAL_APPS + WAGTAIL_APPS + PROJECT_APPS
