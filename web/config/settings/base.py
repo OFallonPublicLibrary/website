@@ -76,7 +76,6 @@ WAGTAIL_APPS = [
 
 PROJECT_APPS = [
     'ofpl.core',
-    'ofpl.cms',
 ]
 
 INSTALLED_APPS = STOCK_APPS + SOCIAL_APPS + WAGTAIL_APPS + PROJECT_APPS
