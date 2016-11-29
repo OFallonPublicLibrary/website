@@ -17,6 +17,7 @@ STATICFILE_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 
+    'compressor.finders.CompressorFinder',
 ]
 
 
@@ -28,6 +29,7 @@ SECRET_KEY = Secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+COMPRESS_ENABLED = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -52,8 +54,7 @@ STOCK_APPS = [
 ]
 
 OTHER_APPS = [
-    'django-braces',
-    'django-model-utils',
+    'compressor',
 ]
 
 SOCIAL_APPS = [
@@ -85,7 +86,7 @@ PROJECT_APPS = [
     'ofpl.search',
 ]
 
-INSTALLED_APPS = STOCK_APPS + SOCIAL_APPS + WAGTAIL_APPS + PROJECT_APPS
+INSTALLED_APPS = STOCK_APPS + OTHER_APPS + SOCIAL_APPS + WAGTAIL_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

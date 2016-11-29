@@ -6,3 +6,4 @@ wagtail
 django-braces
 django-model-utils
 django-allauth
+django-compressor
