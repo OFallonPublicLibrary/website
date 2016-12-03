@@ -10,7 +10,7 @@ services:
        context: ./web
        args:
          env: prod
-     command: sh -c "sleep 7; python manage.py collectstatic --noinput; python manage.py runserver 0.0.0.0:8000"
+     command: sh -c "python manage.py collectstatic --noinput; python manage.py runserver 0.0.0.0:8000"
      environment:
       - DJANGO_SETTINGS_MODULE=config.settings.prod
      volumes:
@@ -19,21 +19,6 @@ services:
        - "8000:8000"
      depends_on:
        - db
-   frontend:
-     build:
-       context: .
-       dockerfile: ./frontend/Dockerfile
-     environment:
-       - ENV=prod
-     command: sh -c "npm -q install && gulp watch"
-     volumes:
-       - ./web/ofpl:/ofpl
-       - ./frontend:/src
-       - node-modules:/src/node_modules
-       - bower-components:/src/bower_components
-
 
 volumes:
   db-data:
-  node-modules:
-  bower-components:
