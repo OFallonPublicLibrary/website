@@ -4,19 +4,17 @@ from .secret import Secret
 
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "O'Fallon Public Library"
-BASE_URL = 'http://localhost:8000'
 
 # We are building our relative paths with unipath
 BASE_DIR = Path(__file__).ancestor(3)
-MEDIA_ROOT = BASE_DIR.child("ofpl").child("media");
-STATIC_ROOT = BASE_DIR.child("ofpl").child("static");
+MEDIA_ROOT = "/media";
+STATIC_ROOT = "/static";
 STATICFILES_DIRS = [
 
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
     'compressor.finders.CompressorFinder',
 ]
 
@@ -54,6 +52,7 @@ STOCK_APPS = [
 ]
 
 OTHER_APPS = [
+    'mptt',
     'compressor',
 ]
 
@@ -76,9 +75,11 @@ WAGTAIL_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',
+    'wagtail_nav_menus',
 ]
 
 PROJECT_APPS = [
@@ -144,6 +145,7 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_BLACKLIST = []
 
 LOGIN_REDIRECT_URL = '/profile'
+LOGIN_URL = '/account/login/'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases

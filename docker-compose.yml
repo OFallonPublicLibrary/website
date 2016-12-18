@@ -15,10 +15,12 @@ services:
       - DJANGO_SETTINGS_MODULE=config.settings.dev
      volumes:
        - ./web:/app
-     ports:
-       - "8000:8000"
+       - ./static:/static
+       - ./media:/media
      depends_on:
        - db
+     ports:
+       - "8000:8000"
 
 volumes:
   db-data:

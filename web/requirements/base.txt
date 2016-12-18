@@ -1,9 +1,10 @@
-Django
-psycopg2
-gunicorn
-unipath
-wagtail
+Django==1.10.4
+psycopg2==2.6.2
+gunicorn==19.6.0
+unipath>=1.1
 django-braces
 django-model-utils
-django-allauth
-django-compressor
+django-allauth==0.29.0
+django-compressor==2.1
+wagtail==1.8
+git+git://github.com/kevindice/wagtail-nav-manus.git@992587c

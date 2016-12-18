@@ -13,38 +13,36 @@ admin.autodiscover()
 
 urlpatterns = []
 
+# Debug Toolbar
+if settings.DEBUG:
+    import debug_toolbar
+    from django.contrib.staticfiles import staticviews
+    from django.conf.urls.static import static
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r'^static/(?P<path>.*)$', staticviews.serve),
+    ]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 # Normal URL Definition
 normalpatterns = [
-    #url(r'^$', core_views.home, name='home'),
-    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 ]
 
 # Auth-Related
 authpatterns = [
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^profile/$', TemplateView.as_view(template_name='profile.html'), name='account_profile'),
+    url(r'^account/', include('allauth.urls')),
+    url(r'^account/', include('ofpl.core.urls', namespace='profile')),
 ]
 
 wagtailpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^search/$', search_views.search, name='search'),
-    url(r'', include(wagtail_urls)),
+    url(r'', include(wagtail_urls)), # This must be last
 ]
 
 urlpatterns += normalpatterns
 urlpatterns += authpatterns
 urlpatterns += wagtailpatterns
-
-
-# Debug Toolbar
-if settings.DEBUG:
-    import debug_toolbar
-    from django.conf.urls.static import static
-    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

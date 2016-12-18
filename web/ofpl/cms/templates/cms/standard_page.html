@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+
+{% block heading %}
+  <div class="page-header">
+
+    <h2>
+      {{ self.title }}
+      {% if self.date %}<small>{{ self.date }}</small>{% endif %}
+    </h2>
+{% endblock %}
+
+{% block content %}
+  {% if self.body %}
+    <div class="body-content">
+      {% include "cms/includes/streamfield.html" with content=self.body %}
+    </div>
+  {% endif %}
+{% endblock%}
