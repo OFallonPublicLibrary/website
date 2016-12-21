@@ -145,7 +145,6 @@ class HomePageCarouselItem(Orderable, CarouselItem):
 class HomePage(Page):
 
     content_panels = Page.content_panels + [
-        FieldPanel('title', classname="full title"),
         InlinePanel('carousel_items', label="Carousel Items"),
     ]
 
