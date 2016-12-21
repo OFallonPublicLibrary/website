@@ -16,7 +16,7 @@ urlpatterns = []
 # Debug Toolbar
 if settings.DEBUG:
     import debug_toolbar
-    from django.contrib.staticfiles import staticviews
+    from django.contrib.staticfiles import views as staticviews
     from django.conf.urls.static import static
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),

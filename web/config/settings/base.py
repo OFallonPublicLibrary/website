@@ -52,7 +52,6 @@ STOCK_APPS = [
 ]
 
 OTHER_APPS = [
-    'mptt',
     'compressor',
 ]
 
@@ -84,7 +83,7 @@ WAGTAIL_APPS = [
 
 PROJECT_APPS = [
     'ofpl.core',
-    'ofpl.home',
+    'ofpl.cms',
     'ofpl.search',
 ]
 
