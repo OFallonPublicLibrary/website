@@ -9,6 +9,85 @@
 {% endblock %}
 
 
+{% block js %}
+<!--[if lt IE 8 ]>
+  {% compress js %}
+    <script type="text/javascript" src="{% static '/bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/lazyLoadSideBarSocialImages.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/modernizr/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/html5shiv.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/respond.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slidebarsConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation/foundation.interchange.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/foundationConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slick.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slickConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityTesting.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/searchBox.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/scrollTop.js', %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityOff.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/textResize.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/ie7font.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/homeCalendarFunctionality.js' %}"></script>
+  {% endcompress %}
+<![endif]-->
+<!--[if IE 8 ]>
+  {% compress js %}
+    <script type="text/javascript" src="{% static '/bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/lazyLoadSideBarSocialImages.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/modernizr/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/html5shiv.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/respond.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slidebarsConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation/foundation.interchange.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/foundationConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slick.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slickConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityTesting.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/searchBox.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/scrollTop.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityOff.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/textResize.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/homeCalendarFunctionality.js' %}"></script>
+  {% endcompress %}
+<![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->
+  {% compress js %}
+    <script type="text/javascript" src="{% static '/bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/lazyLoadSideBarSocialImages.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/modernizr/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slidebarsConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/foundation/js/foundation/foundation.interchange.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/foundationConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slick.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slickConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slidebarsConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityTesting.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/searchBox.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/scrollTop.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/accessibilityOff.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/textResize.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/homeCalendarFunctionality.js' %}"></script>
+  {% endcompress %}
+<!--<![endif]-->
+
+  <script type="text/javascript" src="http://imageserver.ebscohost.com/branding/tabbedsearch/js/FormProcessing.js"></script>
+{% endblock %}
+
+
 
 {% block js %}
 <!--[if lt IE 8 ]>
