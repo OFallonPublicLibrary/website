@@ -32,6 +32,8 @@
   </head>
   <body id="top" class="nofocushighlight {% block body_class %}{% endblock %} {{ page.page_skin }}">
     
+    {% wagtailuserbar %}
+
     <div id="sb-site">
       
       {% if page.page_skin == "kids" %}
@@ -79,7 +81,193 @@
       </div><!-- /#header -->
 
 
+
+      <div class="row menu-bg">
+
+        <div class="medium-4 columns menu-bg">
+          <ul class="inline-list social-topbar hide-for-custom-small">
+            <li><a href="https://www.facebook.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Facebook.png' %}"></a></li>
+            <li><a href="https://twitter.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Twitter.png' %}"></a></li>
+            <li><a href="http://www.pinterest.com/ofallonlibrary/"><img src="{% static 'images/social/topbar/Pinterest.png' %}"></a></li>
+            <li><a href="https://instagram.com/ofallonlibrary/"><img src="{% static '/images/social/topbar/Instagram.png' %}"></a></li>
+            <li class="sb-open-right" id="more"><a href="#connectheader"><img src="{% static 'images/social/topbar/more.png' %}"></a></li>
+          </ul>
+
+
+          <ul class="no-bullet sb-toggle-left hide-for-custom-larger">
+            <div id="menu-button-background"></div>
+            <li id="button-hamburger">
+              <div id="button-icon">
+                <div class="navicon-line"></div>
+                <div class="navicon-line"></div>
+                <div class="navicon-line"></div>
+              </div><!-- /.sb-control-left -->
+            </li>
+            <li id="button-text">
+              <span id="menuText" class="sb-toggle-left">Menu</span>
+            </li>
+          </ul>
+
+          <img id="mobile-logo" class="show-for-small-only" src="{% static 'images/ofpl_logo.png' %}">
+        </div><!-- /.medium-4.columns.menu-bg -->
+
+        <div class="medium-8 columns menu-bg">
+          <a tabindex="4" id="skipSearchLink" href="#skipSearchBox">Skip Search Box</a>
+
+          <form action="http://search.illinoisheartland.org/view.aspx" class="srchbx_wrapper" id="ui_element" name="ui_element" onsubmit="" target="_blank">
+            <p><span class="srchbx_down"></span> <span id="searchFields"><input autocomplete="off" class="srchbx_input" id="searchBoxInput" name="keyword" placeholder="Search" tabindex="5" type="text"> <input name="ctx" type="hidden" value="263.1033.0.0.1"></span> <input class="srchbx_search" type="submit" value=""></p>
+            <ul class="srchbx_dropdown" style="display:none;">
+              <!--<li class="srchbx_filter" id="filterLabel">Filter your search</li>-->
+              <!--<li id="searchTypeFilter" style="clear:both;display:none;">
+                      <select onchange="#" size="1" name="search_prefix" style="width: 100px">
+                        <option selected="selected" value="">Keyword</option>
+                        <option value="TI ">Title</option>
+                        <option value="AU ">Author</option>
+                      </select>
+                    </li>-->
+              <li style="list-style: none"><input name="search_prefix" type="hidden" value=""></li>
+              <li class="searchTab">
+                <a id="tabCatalog">Catalog</a>
+              </li>
+              <li class="searchTab">
+                <a id="tabDatabases">Databases</a>
+              </li>
+              <li class="searchTab">
+                <a id="tabSiteSearch">Site Search</a>
+              </li>
+              <li class="show-for-touch" id="closeFilter">
+                <a id="closeLink" tabindex="11">&nbsp;&nbsp;&#10006;&nbsp;Close&nbsp;</a>
+              </li>
+            </ul>
+          </form>
+
+        </div><!-- /.medium-8.columns.menu-bg -->
+
+      </div><!-- /.row.menu-bg -->
+
+
+
+      <!-- Desktop Navigation Scheme -->
+      <div class="row hide-for-custom-small">
+        <div class="small-12"><!-- columns is omitted intentionally -->
+
+      <nav class="top-bar show-for-medium-up" data-topbar>
+        <div class="wrapper">
+            <div class="top-bar-section">
+              <!-- Right Nav Section -->
+              <ul class="left">
+              {% get_nav_menu 'top' %}
+              </ul>
+
+              <ul class="right">
+                <li>
+                  <a class="top-nav-link" href="https://search.illinoisheartland.org/logon.aspx?ctx=263.1033.0.0.3&Header=1">My Account</a>
+                </li>
+              </ul>
+
+
+            </div>
+        </div>
+        </nav><!-- end primary nav -->
+
+        </div><!-- column -->
+      </div><!-- row -->
+      <!-- End desktop navigation scheme -->
+
+
+      {% block content %}
+
+      {% endblock %}
+
+
+      <div id="footer-image"></div>
+
+      {% include 'includes/footer_top.html' %}
+
+      {% include 'includes/footer_middle.html' %}
+
+      {% include 'includes/footer_bottom.html' %}
+
+
     </div><!-- /#sb-site -->
+
+    {% include 'includes/slidebar-left.html' %}
+
+    {% include 'includes/slidebar-right.html' %}
+
+    {% include 'includes/google-maps.html' %}
+
+
+    {% block js %}
+    <!--[if lt IE 8 ]>
+      {% compress js %}
+        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/slidebarsConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/foundation/js/foundation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/foundationConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityTesting.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/searchBox.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scrollTop.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityOff.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/textResize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ie7font.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calendarEqualize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/siteSearchModifications.js' %}"></script>
+      {% endcompress %}
+    <![endif]-->
+    <!--[if IE 8 ]>
+      {% compress js %}
+        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/slidebarsConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/foundation/js/foundation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/foundationConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityTesting.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/searchBox.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scrollTop.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityOff.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/textResize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calendarEqualize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/siteSearchModifications.js' %}"></script>
+      {% endcompress %}
+    <![endif]-->
+    <!--[if (gt IE 8)|!(IE)]><!-->
+      {% compress js %}
+        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/slidebarsConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/foundation/js/foundation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/foundationConfig.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityTesting.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/searchBox.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scrollTop.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/accessibilityOff.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/textResize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calendarEqualize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/siteSearchModifications.js' %}"></script>
+      {% endcompress %}
+    <!--<![endif]-->
+
+      <script type="text/javascript" src="http://imageserver.ebscohost.com/branding/tabbedsearch/js/FormProcessing.js"></script>
+    {% endblock %}
+
+
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+
 
   </body>
 
