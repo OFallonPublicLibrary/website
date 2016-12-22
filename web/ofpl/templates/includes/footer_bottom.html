@@ -1,0 +1,21 @@
+{% load static %}
+
+<div id="footer-bottom">
+<div class="row">
+  <div class="medium-8 columns">
+    <a href="<%- @site.url %>">
+      <img id="footer-logo" src="{% static 'images/ofpl_logo.png' %}">
+    </a>
+    <ul class="footer-links">
+      <li><a href="<%- @site.url %>about">About</a></li>
+      <li><a href="<%- @site.url %>policies">Policies</a></li>
+      <li><a href="<%- @site.url %>contact">Contact</a></li>
+      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
+      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
+    </ul>
+  </div>
+  <div class="medium-4 columns">
+    <p>&copy;2016 O'Fallon Public Library</p>
+  </div>
+</div>
+</div>

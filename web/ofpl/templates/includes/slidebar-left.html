@@ -1,0 +1,40 @@
+{% load static nav_menu_tags %}
+<div class="sb-slidebar sb-left sb-momentum-scrolling">
+  <h2 id="menuHeader" class="text-center">Menu</h2>
+  <a id="navigation"></a>
+  <nav>
+		<ul class="sb-menu">
+      {% get_nav_menu 'top' %}
+			<li><a href="#top" onClick="setTimeout(function(){document.getElementById('firstSocialLink').focus();},1500);" class="sb-open-right">Follow Us On Social Media!</a></li>
+			<!--<li><small>Slidebars &copy; 2014 Adam Smith</small></li>-->
+		</ul>
+	  </nav>
+    <ul id="off-canvas-social" class="inline-list social-topbar">
+      <li><a class="sb-close" href="https://www.facebook.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Facebook.png' %}"></a></li>
+      <li><a class="sb-close" href="https://twitter.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Twitter.png' %}"></a></li>
+      <li><a class="sb-close" href="http://www.pinterest.com/ofallonlibrary/"><img src="{% static 'images/social/topbar/Pinterest.png' %}"></a></li>
+      <li><a class="sb-close" href="https://www.youtube.com/channel/UCU9KeZou3gxQZWxMnnJhAhg"><img src="{% static 'images/social/topbar/youtube.png' %}"></a></li>
+      <li class="sb-open-right"><a href="#connectheader"><img src="{% static 'images/social/topbar/more.png' %}"></a></li>
+    </ul>
+
+    <div id="sb-info" class="hide-for-medium-up">
+    <hr>
+
+    <h3>Hours</h3>
+    <%- hoursText %>
+
+    <hr>
+
+    <h3>Location</h3>
+    <p>120 Civic Plaza<br>
+    O'Fallon, IL 62269</p>
+    <a href="#" id="offCanvMapButtn" data-reveal-id="ofpl_map" data-reveal class="sb-close button tiny radius">Map</a>
+
+    <hr>
+
+    <h3>Phone Number</h3>
+    <p>618-632-3783</p>
+
+    </div>
+
+    </div>

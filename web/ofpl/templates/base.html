@@ -1,4 +1,4 @@
-{% load static wagtailuserbar compress %}
+{% load static wagtailuserbar compress nav_menu_tags %}
 
 <!--
 ---
@@ -38,85 +38,10 @@ htmlmin: true
         {% endblock %}
 
         <!-- Web App -->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		    <meta name="apple-mobile-web-app-capable" content="yes">
+		    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-        <!-- Favicons -->
-		<link rel="icon"
-			type="image/png"
-			href="{% static 'images/icons-startup-imgs/16.png' %}">
-		<link rel="icon"
-			type="image/png"
-			href="{% static 'images/icons-startup-imgs/32.png' %}"
-			sizes="32x32">
-		<link rel="icon"
-			type="image/png"
-			href="{% static 'images/icons-startup-imgs/48.png' %}"
-			sizes="48x48">
-		<link rel="icon"
-			type="image/png"
-			href="{% static 'images/icons-startup-imgs/64.png' %}"
-			sizes="64x64">
-
-
-		<!-- Apple Touch Icons -->
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/120.png' %}"
-			sizes="120x120">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/152.png' %}"
-			sizes="152x152">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/76.png' %}"
-			sizes="76x76">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/114.png' %}"
-			sizes="114x114">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/57.png' %}"
-			sizes="57x57">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/144.png' %}"
-			sizes="144x144">
-		<link rel="apple-touch-icon"
-			href="{% static 'images/icons-startup-imgs/72.png' %}"
-			sizes="72x72">
-
-		<!-- Startup Images -->
-		<!-- iPhone 5, 5S, 5C -->
-	<link href="{% static 'images/icons-startup-imgs/1096.png' %}"
-			media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPhone 4, 4S -->
-	<link href="{% static 'images/icons-startup-imgs/920.png' %}"
-			media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPhone, 3G, 3GS -->
-	<link href="{% static 'images/icons-startup-imgs/460.png' %}"
-			media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPad Retina, Mini Retina Portrait -->
-	<link href="{% static 'images/icons-startup-imgs/2008.png' %}"
-			media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPad Retina, Mini Retina Landscape -->
-	<link href="{% static 'images/icons-startup-imgs/1496.png' %}"
-			media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPad, Mini Portrait -->
-	<link href="{% static 'images/icons-startup-imgs/1004.png' %}"
-			media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)"
-			rel="apple-touch-startup-image">
-
-		<!-- iPad, Mini Landscape -->
-	<link href="{% static 'images/icons-startup-imgs/748.png' %}"
-			media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)"
-			rel="apple-touch-startup-image">
+        {% include 'includes/head_icons.html' %}
 
         {# Google Analytics #}
 
@@ -124,16 +49,12 @@ htmlmin: true
 
 <!--  <%- if alert.match(/<p>/) then 'siteAlert ' %> -->
 
-    <body id="top" class="nofocushighlight 
-      {% block body_class %}{% endblock %}
-      {{ page_skin }}
-      <%- if @document.skin is 'kids' then 'kids' %>
-      <%- if @document.skin is 'teens' then 'teens' %>
-    ">
+    <body id="top" class="nofocushighlight {% block body_class %}{% endblock %}{{ page.page_skin }}">
       {% wagtailuserbar %}
+<!--
   <a tabindex="1" class="adaHide sb-toggle-left" href="#navigation" onclick="window.setTimeout(function (){document.getElementById('homeLink').focus();}, 20);">Skip to Navigation</a>
   <a tabindex="2" class="adaHide" href="#mainContent" onclick="<%- if @document.title is 'Home' then "var adaLink = document.getElementById('homeFirstContentElement');adaLink.focus();adaLink.scrollTo();" else "window.setTimeout(function (){var adaLink = document.getElementById('breadcrumbHome');adaLink.focus();adaLink.scrollTo();}, 20);" %>">Skip to Content</a>
-
+-->
     <div id="sb-site">
 
 <!-- If IE 9 or less is in use, tell them to upgrade. -->
@@ -151,17 +72,17 @@ htmlmin: true
 <div id="teensheaderimg"></div>
 {% endif %}
 
-<% if alert.match(/<p>/): %>
+{% if alert %}
 <div id="alertBox" class="alert text-center">
   <div style="float:right"><button id="closeAlertButton" class="tiny alert">&#x2716;</button></div>
-Attention:  <%- alert %>
+Attention: {{ alert }}
 
 </div>
-<% end %>
+{% endif %}
 
 <div id="header" class="row show-for-medium-up">
   <div id="headerrow" class="medium-4 large-4 columns left">
-    <a href="<%- @site.url %>">
+    <a href="/">
       {% if page.page_skin %}
         <img id="logo" src="{% static 'images/logo_teens.png' %}">
       {% else %}
@@ -169,9 +90,9 @@ Attention:  <%- alert %>
       {% endif %}
     </a>
   </div>
-  <% if @document.skin is 'kids' or @document.skin is 'teens': %>
+  {% if page.page_skin == 'kids' or page.page_skin == 'teens' %}
   <!-- No show -->
-  <% else: %>
+  {% else %}
   <div class="medium-3 large-3 columns">
   <%- hoursText %>
   </div>
@@ -189,7 +110,7 @@ Attention:  <%- alert %>
     </div>
   </div>
 
-  <% end %>
+  {% endif %}
 </div>
 
 <div class="row menu-bg"><!-- Menu Button & Search Bar -->
@@ -299,9 +220,11 @@ Attention:  <%- alert %>
       <div class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="left">
+        {% get_nav_menu 'top' %}
+<!--
         <% for page in @getCollection("html").findAll({isPage:true, ignored:false, isTopLevelPage:true}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
         <li class="<%= if page.hasChildren is true then 'has-dropdown ' else '' %><%= if page.id is @document.id then 'active' else 'inactive' %>">
-            <a class="top-nav-link" href="<%= if page.title is "Home" then @site.url else (if /http/i.test(page.url) then page.url else @site.url + page.url) %>">
+            <a class="top-nav-link" href="/">
                 <%= page.title %>
             </a>
             <%- if page.hasChildren is true then '<ul class="dropdown">' else '' %>
@@ -311,6 +234,7 @@ Attention:  <%- alert %>
             <%- if page.hasChildren is true then '</ul>' else '' %>
         </li>
         <% end %>
+-->
         </ul>
 
         <ul class="right">
@@ -340,27 +264,9 @@ Attention:  <%- alert %>
   <div class="medium-9 large-10 medium-push-3 large-push-2 columns">
   	  <a id="mainContent"></a>
 
-  	  <h2 id="title"><%= @document.title %></h2>
+  	  <h2 id="title">{{ page.title }}</h2>
 
-
-      <ul class="breadcrumbs">
-        <li><a id="breadcrumbHome" href="<%- @site.url %>">Home</a></li>
-        <% if @document.isTopLevelPage is true: %>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% else if @document.secondaryPage is true: %>
-          <% pathSplit = @document.fullPath.split "/" %>
-          <% page = @getFile({locationOfChildren:pathSplit[pathSplit.length - 2], ignored:false}) %>
-          <li><a href="<%- @site.url + page.get('url') %>"><%- page.get('title') %></a></li>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% else: %>
-          <% secondaryParent = @getFileAtPath(@document.parentPageFileName) %>
-          <% pathSplit = secondaryParent.get('fullPath').split "/" %>
-          <% page = @getFile({locationOfChildren:pathSplit[pathSplit.length - 2], ignored:false}) %>
-          <li><a href="<%- @site.url + page.get('url') %>"><%- page.get('title') %></a></li>
-          <li><a href="<%- @site.url + secondaryParent.get('url') %>"><%- secondaryParent.get('title') %></a></li>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% end %>
-      </ul>
+      <strong>Breadcrumbs go here.</strong>
 
       <% if @document.isCalendarPage?: %>
         <%- @partial('calendar-filter-links') %>
@@ -438,91 +344,11 @@ Attention:  <%- alert %>
 
 <div id="footer-image"></div>
 
-<div id="footer-top">
-<div class="row">
-  <div class="medium-8 columns">
-    <h4>Want to stay in the loop?</h4>
-    <p>Sign up for our monthly newsletter.</p>
-  </div>
-  <div class="medium-4 columns">
-    <form action="//ofallonlibrary.us1.list-manage.com/subscribe/post?u=72ff0665984a6bc59e09c844e&id=769ea3c2b1" method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+{% include 'includes/footer_top.html' %}
 
-    <div class="row collapse">
-      <div class="small-8 columns">
+{% include 'includes/footer_middle.html' %}
 
-        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="you@example.com" required>
-
-      </div>
-      <div class="small-4 columns">
-
-        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button success postfix">
-
-      </div>
-    </div>
-
-    <div style="position: absolute; left: -5000px;">
-      <input type="text" name="b_72ff0665984a6bc59e09c844e_769ea3c2b1" tabindex="-1" value="">
-    </div>
-
-    </form>
-  </div>
-</div>
-</div>
-
-
-<% if 2 == 299: %>
-<!-- <div id="footer-middle">
-<div class="row">
-  <div class="medium-4 columns">
-    <%- @partial('footer-about') %>
-
-  </div>
-  <div class="medium-8 columns">
-    <div class="row collapse">
-      <div class="medium-4 columns">
-        <div class="ft-border-left">
-          <%- @partial('footer-left') %>
-
-        </div>
-      </div>
-      <div class="medium-4 columns">
-        <div class="ft-border-left">
-          <%- @partial('footer-center') %>
-
-        </div>
-      </div>
-      <div class="medium-4 columns">
-        <div class="ft-border-left">
-          <%- @partial('footer-right') %>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
--->
-<% end %>
-
-<div id="footer-bottom">
-<div class="row">
-  <div class="medium-8 columns">
-    <a href="<%- @site.url %>">
-      <img id="footer-logo" src="{% static 'images/ofpl_logo.png' %}">
-    </a>
-    <ul class="footer-links">
-      <li><a href="<%- @site.url %>about">About</a></li>
-      <li><a href="<%- @site.url %>policies">Policies</a></li>
-      <li><a href="<%- @site.url %>contact">Contact</a></li>
-      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
-      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
-    </ul>
-  </div>
-  <div class="medium-4 columns">
-    <p>&copy;2016 O'Fallon Public Library</p>
-  </div>
-</div>
-</div>
+{% include 'includes/footer_bottom.html' %}
 
 </div>
 
@@ -532,66 +358,10 @@ Attention:  <%- alert %>
 
 
 
-
-    <div class="sb-slidebar sb-left sb-momentum-scrolling">
-      <h2 id="menuHeader" class="text-center">Menu</h2>
-      <a id="navigation"></a>
-      <nav>
-		<ul class="sb-menu">
-			<!--<li><img src="http://plugins.adchsm.me/slidebars/images/slidebars-logo-white@2x.png" alt="Slidebars" width="118" height="40"></li>-->
-			<% for page in @getCollection("html").findAll({isPage:true, isTopLevelPage:true}).findAllLive({isPage:true},[{navigationOrder:1}]).toJSON(): %>
-            <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-              <a <%- if page.title is 'Home' then 'id="homeLink" ' %><%- if page.hasChildren is true then 'class="sb-toggle-submenu" ' else 'class="sb-close"' %>href="<%- if page.hasChildren is true then '#' else if page.title is "Home" then @site.url else (if /http/i.test(page.url) then page.url else @site.url + page.url) %>">
-                <%= page.title %>
-                <%- if page.hasChildren is true then '<span class="sb-caret"></span>' %>
-            </a>
-            <%- if page.hasChildren is true then '<ul class="sb-submenu"><li><a class="sb-close" href="' + (if /http/i.test(page.url) then page.url else @site.url + page.url) + '">&nbsp;&nbsp;- Overview</a></li>' else '' %>
-            <% for childPage in @getFilesAtPath(page.locationOfChildren).findAll({isPage:true}).findAllLive({isPage:true},[{navigationOrder:1}]).toJSON(): %>
-              <li <%= if childPage.id is @document.id then ' class="active"' %>><a class="sb-close" href="<%- if /http/i.test(childPage.url) then childPage.url else @site.url + childPage.url %>">&nbsp;&nbsp;- <%= childPage.title %></a></li>
-            <% end %>
-            <%- if page.hasChildren is true then '</ul>' else '' %>
-        </li>
-        <% end %>
+    {% include 'includes/slidebar-left.html' %}
 
 
-			<li><a href="#top" onClick="setTimeout(function(){document.getElementById('firstSocialLink').focus();},1500);" class="sb-open-right">Follow Us On Social Media!</a></li>
-			<!--<li><small>Slidebars &copy; 2014 Adam Smith</small></li>-->
-		</ul>
-	  </nav>
-    <ul id="off-canvas-social" class="inline-list social-topbar">
-      <li><a class="sb-close" href="https://www.facebook.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Facebook.png' %}"></a></li>
-      <li><a class="sb-close" href="https://twitter.com/ofallonlibrary"><img src="{% static 'images/social/topbar/Twitter.png' %}"></a></li>
-      <!--<li><a class="sb-close" href="https://plus.google.com/114570487730985673506/"><img src="{% static 'images/social/topbar/Google+.png' %}"></a></li>-->
-      <li><a class="sb-close" href="http://www.pinterest.com/ofallonlibrary/"><img src="{% static 'images/social/topbar/Pinterest.png' %}"></a></li>
-      <li><a class="sb-close" href="https://www.youtube.com/channel/UCU9KeZou3gxQZWxMnnJhAhg"><img src="{% static 'images/social/topbar/youtube.png' %}"></a></li>
-      <li class="sb-open-right"><a href="#connectheader"><img src="{% static 'images/social/topbar/more.png' %}"></a></li>
-    </ul>
-
-    <div id="sb-info" class="hide-for-medium-up">
-    <hr>
-
-    <h3>Hours</h3>
-    <%- hoursText %>
-
-    <hr>
-
-    <h3>Location</h3>
-    <p>120 Civic Plaza<br>
-    O'Fallon, IL 62269</p>
-    <a href="#" id="offCanvMapButtn" data-reveal-id="ofpl_map" data-reveal class="sb-close button tiny radius">Map</a>
-
-    <hr>
-
-    <h3>Phone Number</h3>
-    <p>618-632-3783</p>
-
-    </div>
-
-    </div>
-
-    <div id="ajax-sb-right" class="sb-slidebar sb-right sb-momentum-scrolling">
-      <!-- social icons here -->
-    </div>
+    {% include 'includes/slidebar-right.html' %}
 
     <div id="ofpl_map" class="reveal-modal x-large" data-reveal>
       <h2>Google Maps</h2>
