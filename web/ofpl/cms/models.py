@@ -157,6 +157,7 @@ class HomePage(Page, Skinable):
 
     content_panels = Page.content_panels + [
         InlinePanel('carousel_items', label="Carousel Items"),
+        FieldPanel('page_skin'),
     ]
 
     promote_panels = Page.promote_panels
@@ -177,4 +178,5 @@ class StandardPage(Page, Skinable):
     content_panels = [
         FieldPanel('title', classname="full title"),
         StreamFieldPanel('body'),
+        FieldPanel('page_skin'),
     ]

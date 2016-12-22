@@ -122,10 +122,11 @@ htmlmin: true
 
     </head>
 
-    <body id="top" class="
+<!--  <%- if alert.match(/<p>/) then 'siteAlert ' %> -->
+
+    <body id="top" class="nofocushighlight 
       {% block body_class %}{% endblock %}
-      nofocushighlight
-      <%- if alert.match(/<p>/) then 'siteAlert ' %>
+      {{ page_skin }}
       <%- if @document.skin is 'kids' then 'kids' %>
       <%- if @document.skin is 'teens' then 'teens' %>
     ">
@@ -140,17 +141,15 @@ htmlmin: true
 <div style="background:#70db70;color:black;"><h3>A friendly message from the O'Fallon Public Library</h3><p style="margin-bottom:0px;">You are using an <strong>outdated</strong> browser. Please <a style="color:blue;" href='http://browsehappy.com/?locale=en'>upgrade your browser</a> to improve your experience.<br><a style="color:blue;" onclick="document.getElementById('noticeHidden').style.display = 'block';">Read More...</a></p><div id="noticeHidden" style="display:none;"><h3>Why Should I?</h3><p>Why it matters for you:<ul><li>Outdated browsers are a security risk for your computer.</li><li>Old browsers (especially old versions of Internet Explorer) aren't compatible with many features of modern websites.</li></ul>Why it matters for us:<ul><li>Developing a website to be backwards compatible with outdated browsers is costly.  Your tax dollars are better spent towards other library services.</li><li>Through ensuring our patrons use modern web browsers, we can utilize modern web technologies to enhance your experience and serve you better.</li></ul></p><h3>Need help upgrading?  Give us a call!</h3><p style="margin-bottom:0px;">Insert Email Link here or phone number here</p></div></div>
 <![endif]-->
 
-<% if @document.skin is 'kids': %>
+{% if page.page_skin == "kids" %}
 <!-- Kids backgrounds -->
 <div id="kidsheaderimg"></div>
 <div id="kidsfooterimg"></div>
 <div id="kidsbgcolor"></div>
-<% end %>
-
-<% if @document.skin is 'teens': %>
+{% elif page.page_skin == "teens" %}
 <!-- Teens backgrounds -->
 <div id="teensheaderimg"></div>
-<% end %>
+{% endif %}
 
 <% if alert.match(/<p>/): %>
 <div id="alertBox" class="alert text-center">
@@ -161,13 +160,13 @@ Attention:  <%- alert %>
 <% end %>
 
 <div id="header" class="row show-for-medium-up">
-  <div id="headerrow" class="medium-<%- if @document.skin is 'kids' then '4' else '4' %> large-4 columns left">
+  <div id="headerrow" class="medium-4 large-4 columns left">
     <a href="<%- @site.url %>">
-      <% if @document.skin is 'teens': %>
-        <img id="logo" src="<%- @site.url %>images/logo_teens.png">
-      <% else: %>
-        <img id="logo" src="<%- @site.url %>images/ofpl_logo.png">
-      <% end %>
+      {% if page.page_skin %}
+        <img id="logo" src="{% static 'images/logo_teens.png' %}">
+      {% else %}
+        <img id="logo" src="{% static 'images/ofpl_logo.png' %}">
+      {% endif %}
     </a>
   </div>
   <% if @document.skin is 'kids' or @document.skin is 'teens': %>
