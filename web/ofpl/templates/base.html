@@ -221,20 +221,6 @@ Attention: {{ alert }}
         <!-- Right Nav Section -->
         <ul class="left">
         {% get_nav_menu 'top' %}
-<!--
-        <% for page in @getCollection("html").findAll({isPage:true, ignored:false, isTopLevelPage:true}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
-        <li class="<%= if page.hasChildren is true then 'has-dropdown ' else '' %><%= if page.id is @document.id then 'active' else 'inactive' %>">
-            <a class="top-nav-link" href="/">
-                <%= page.title %>
-            </a>
-            <%- if page.hasChildren is true then '<ul class="dropdown">' else '' %>
-            <% for childPage in @getFilesAtPath(page.locationOfChildren).findAll({isPage:true, ignored:false}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
-              <li class="<%= if childPage.id is @document.id then 'active' else 'inactive' %>"><a href="<%- if /http/i.test(childPage.url) then childPage.url else @site.url + childPage.url %>"><%= childPage.title %></a></li>
-            <% end %>
-            <%- if page.hasChildren is true then '</ul>' else '' %>
-        </li>
-        <% end %>
--->
         </ul>
 
         <ul class="right">
@@ -282,55 +268,10 @@ Attention: {{ alert }}
     <div class="medium-3 large-2 medium-pull-9 large-pull-10 columns">
     <div class="row">
       <div class="small-12 columns panel">
-        <% if @document.isTopLevelPage is true: %>
-          <h3><%- @document.title %></h3>
-          <ul class="side-nav">
-            <% for page in @getFilesAtPath(@document.locationOfChildren).findAll({isPage:true, ignored:false}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
-              <li><a href="<%- if /http/i.test(page.url) then page.url else @site.url + page.url %>"><%- page.title %></a></li>
-            <% end %>
-          </ul>
-
-        <% else if @document.secondaryPage is true: %>
-          <% pathSplit = @document.fullPath.split "/" %>
-          <% col = @getCollection("html").findAll({locationOfChildren:pathSplit[pathSplit.length - 2], ignored:false}).toJSON() %>
-          <% for page in col: %>
-            <h3><%- page.title %></h3>
-            <ul class="side-nav">
-              <% for childPage in @getFilesAtPath(page.locationOfChildren).findAll({isPage:true, ignored:false}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
-                <li<%- if childPage.id is @document.id then ' class="active"' else '' %>><a href="<%- if /http/i.test(childPage.url) then childPage.url else @site.url + childPage.url %>"><%- childPage.title %></a>
-                  <% tertiaryPages = @getFilesAtPath('data/tertiary').findAll({ignored: false, hideFromSubmenu: false, parentPageFileName: @document.relativePath}).findAllLive({parentPageFileName: childPage.relativePath}).toJSON() %>
-                  <% if Object.keys(tertiaryPages).length > 0: %>
-                    <ul>
-                      <% for tertiaryPage in tertiaryPages: %>
-                        <li><a href="<%- if /http/i.test(childPage.url) then childPage.url else @site.url + tertiaryPage.url %>"><%- tertiaryPage.title %></a></li>
-                      <% end %>
-                    </ul>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-        <% else: %>
-          <% pathSplit = @document.parentPageFileName.split "/" %>
-          <% col = @getCollection("html").findAll({locationOfChildren:pathSplit[0], ignored:false}).toJSON() %>
-          <% for page in col: %>
-            <h3><%- page.title %></h3>
-            <ul class="side-nav">
-              <% for childPage in @getFilesAtPath(page.locationOfChildren).findAll({isPage:true, ignored:false}).findAllLive({isPage:true, ignored:false},[{navigationOrder:1}]).toJSON(): %>
-                <li><a href="<%- if /http/i.test(childPage.url) then childPage.url else @site.url + childPage.url %>"><%- childPage.title %></a>
-                  <% tertiaryPages = @getFilesAtPath('data/tertiary').findAll({ignored: false}).findAllLive({parentPageFileName: childPage.relativePath}).toJSON() %>
-                  <% if Object.keys(tertiaryPages).length > 0: %>
-                    <ul>
-                      <% for tertiaryPage in tertiaryPages: %>
-                        <li<%- if tertiaryPage.id is @document.id then ' class="active"' else '' %>><a href="<%- if /http/i.test(tertiaryPage.url) then tertiaryPage.url else @site.url + tertiaryPage.url %>"><%- tertiaryPage.title %></a></li>
-                      <% end %>
-                    </ul>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-        <% end %>
+        <h3>{{ page.title }}</h3>
+        <ul class="side-nav">
+          <li><a href="#">Subnav goes here</a></li>
+        </ul>
       </div><!-- column -->
     </div><!-- row -->
 
@@ -377,10 +318,9 @@ Attention: {{ alert }}
 {% block js %}
 <!--[if lt IE 8 ]>
   {% compress js %}
-    <script type="text/javascript" src="{% static 'bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bower/modernizr/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
@@ -399,10 +339,9 @@ Attention: {{ alert }}
 <![endif]-->
 <!--[if IE 8 ]>
   {% compress js %}
-    <script type="text/javascript" src="{% static 'bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bower/modernizr/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
@@ -420,10 +359,9 @@ Attention: {{ alert }}
 <![endif]-->
 <!--[if (gt IE 8)|!(IE)]><!-->
   {% compress js %}
-    <script type="text/javascript" src="{% static 'bower/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bower/modernizr/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/slidebarsConfig.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower/foundation/js/foundation.min.js' %}"></script>
