@@ -23,5 +23,5 @@
 // S: Fair enough.
 
 setTimeout(function(){
-	$('#ajax-sb-right').load('<%- @site.url %>ajax/right-sidebar');
+    $('#ajax-sb-right').load('<%- @site.url %>ajax/right-sidebar');
 }, 1500);

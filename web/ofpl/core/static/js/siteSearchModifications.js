@@ -20,12 +20,12 @@ $('.search-nav-form-table').remove()
 // replace <font> tags with <div>'s
 while(0 < $('font.search-results').size()){
 
-	var innerHTML = $('font.search-results').eq(0).contents();
+    var innerHTML = $('font.search-results').eq(0).contents();
 
     $('font.search-results').eq(0).replaceWith(
-    	$('<div></div>').addClass('search-result').append(
-    		$('<p></p>').append(innerHTML)
-    	)
+        $('<div></div>').addClass('search-result').append(
+            $('<p></p>').append(innerHTML)
+        )
     );
 
 }

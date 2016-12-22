@@ -27,36 +27,36 @@ function getShortMonth(month)   {
 }
 
 function highlightCells(year, month){
-	$.getJSON("/dateJSON/" + year + "-" + (month + 1) + ".json", function( data ){
-		  $(".ui-state-default").each(function(){
-		    var test = $(this).html();
-		  	if(data.days.indexOf(test.toString()) > -1){
-		  	  $(this).addClass("nonEmpty");
-		  	}
-		  });
-	});
+    $.getJSON("/dateJSON/" + year + "-" + (month + 1) + ".json", function( data ){
+          $(".ui-state-default").each(function(){
+            var test = $(this).html();
+            if(data.days.indexOf(test.toString()) > -1){
+              $(this).addClass("nonEmpty");
+            }
+          });
+    });
 }
 
 function showDaysEvents(date){
-	var currentDate = $( " #datepicker " ).datepicker( "getDate" );
-	var day = currentDate.getDate();
-	var month = currentDate.getMonth()+1;
-	var year = currentDate.getFullYear();
-	$('#eventDate').html(getShortMonth(month-1) + " " + day + nth(day));
-	$('#eventContainer').html("<img src=\"/static/images/ajax-loader.gif\"><br><em>Loading...</em>");
-	$('#eventContainer').load("/date/" + year + "-"  + month + "-"  + day + ".html");
-	highlightCells(currentDate.getFullYear(), currentDate.getMonth());
+    var currentDate = $( " #datepicker " ).datepicker( "getDate" );
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth()+1;
+    var year = currentDate.getFullYear();
+    $('#eventDate').html(getShortMonth(month-1) + " " + day + nth(day));
+    $('#eventContainer').html("<img src=\"/static/images/ajax-loader.gif\"><br><em>Loading...</em>");
+    $('#eventContainer').load("/date/" + year + "-"  + month + "-"  + day + ".html");
+    highlightCells(currentDate.getFullYear(), currentDate.getMonth());
 }
 
 $( "#datepicker" ).datepicker({
-	inline: true,
-	onSelect: function(date){
-		$(".ui-datepicker a").removeAttr("href");
-		showDaysEvents(date);
-	},
-	onChangeMonthYear: function(year, month, inst){
-		highlightCells(year, month - 1);
-	}
+    inline: true,
+    onSelect: function(date){
+        $(".ui-datepicker a").removeAttr("href");
+        showDaysEvents(date);
+    },
+    onChangeMonthYear: function(year, month, inst){
+        highlightCells(year, month - 1);
+    }
 });
 
 var rightNow = new Date();
