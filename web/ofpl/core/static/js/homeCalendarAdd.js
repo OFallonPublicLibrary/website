@@ -1,0 +1,1 @@
+document.write("<script src=\"http://ofpl.info/scripts/interactiveCalendar.js\"></script>");
