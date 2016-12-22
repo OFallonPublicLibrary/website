@@ -141,7 +141,7 @@ class CarouselItem(LinkFields):
 
 
 class Skinable(models.Model):
-    page_skin = forms.CharField(max_length=255, choices=PAGE_SKIN_CHOICES)
+    page_skin = models.CharField(max_length=255, choices=PAGE_SKIN_CHOICES)
 
     class Meta:
         abstract = True
@@ -167,7 +167,7 @@ class HomePage(Page, Skinable):
 
 # Standard Page
 
-class StandardPage(Page, SKinable):
+class StandardPage(Page, Skinable):
     body = StreamField(StandardStreamBlock())
 
     search_fields = Page.search_fields + [
