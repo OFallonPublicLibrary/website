@@ -140,6 +140,12 @@ class CarouselItem(LinkFields):
         abstract = True
 
 
+class Skinable(models.Model):
+    page_skin = forms.CharField(max_length=255, choices=PAGE_SKIN_CHOICES)
+
+    class Meta:
+        abstract = True
+
 # Home Page
 
 
@@ -147,7 +153,7 @@ class HomePageCarouselItem(Orderable, CarouselItem):
     page = ParentalKey('cms.HomePage', related_name='carousel_items')
 
 
-class HomePage(Page):
+class HomePage(Page, Skinable):
 
     content_panels = Page.content_panels + [
         InlinePanel('carousel_items', label="Carousel Items"),
@@ -161,7 +167,7 @@ class HomePage(Page):
 
 # Standard Page
 
-class StandardPage(Page):
+class StandardPage(Page, SKinable):
     body = StreamField(StandardStreamBlock())
 
     search_fields = Page.search_fields + [
