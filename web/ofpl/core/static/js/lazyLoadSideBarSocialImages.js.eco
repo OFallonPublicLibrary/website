@@ -1,27 +1,3 @@
-// The images in the right sidebar are fairly large.
-// They're collectively about 70MB actually.
-// That's almost 20% of the total asset load for any given page
-// That's a lot.
-// And they aren't even being viewed immediately!
-// They're loaded concurrently with the CSS, which is far more important
-// ...because CSS makes things look nice
-// ...and these images won't even be seen for at least 5 seconds, maybe 10 or more...
-
-
-// Don't worry...these comments are removed by a Grunt task, so they won't be slowing down load times.
-
-
-// Q: So, what the hell does this do?
-// A: It injects the HTML for all the social icon images into the RIGHT slidebar after a delay of 1.5 seconds or so.
-
-// Q: What about someone who disables JavaScript?
-// A: This is 2014.
-
-// S: You didn't answer my question.
-// S: Fine.  Considering that the slidebars only work when JavaScript is enabled, it won't matter that the images aren't injected because the user won't see them anyway.
-
-// S: Fair enough.
-
 setTimeout(function(){
     $('#ajax-sb-right').load('<%- @site.url %>ajax/right-sidebar');
 }, 1500);
