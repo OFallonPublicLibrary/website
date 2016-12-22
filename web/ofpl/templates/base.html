@@ -1,0 +1,86 @@
+{% load static wagtailuserbar compress nav_menu_tags %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+    <meta name="description" content="The website of the O'Fallon Public Library" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    {% compress css %}
+      <link type="text/x-scss" rel="stylesheet" href="{% static 'scss/_open_sans.scss' %}">
+      <link type="text/css" rel="stylesheet" href="{% static 'bower/foundation/css/foundation.css' %}">
+      <link type="text/css" rel="stylesheet" href="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.css' %}">
+      <link type="text/x-scss" rel="stylesheet" href="{% static 'scss/ofpl.scss' %}">
+    {% endcompress %}
+
+    
+    {% block extra_css %}
+    {% endblock %}
+
+    <!-- Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    {% include 'includes/head_icons.html' %}
+  </head>
+  <body id="top" class="nofocushighlight {% block body_class %}{% endblock %} {{ page.page_skin }}">
+    
+    <div id="sb-site">
+      
+      {% if page.page_skin == "kids" %}
+      <!-- Kids backgrounds -->
+      <div id="kidsheaderimg"></div>
+      <div id="kidsfooterimg"></div>
+      <div id="kidsbgcolor"></div>
+      {% elif page.page_skin == "teens" %}
+      <div id="teensheaderimg"></div>
+      {% endif %}
+
+       
+      {% if alert %}
+        <div id="alertBox" class="alert text-center">
+          <div style="float:right"><button id="closeAlertButton" class="tiny alert">&#x2716;</button></div>
+          Attention: {{ alert }}
+        </div>
+      {% endif %}
+
+
+      <div id="header" class="row show-for-medium-up">
+        <div id="headerrow" class="medium-4 large-4 columns left">
+          {% include 'includes/logos.html' %}
+        </div>
+        {% if page.page_skin == 'kids' or page.page_skin == 'teens' %}
+          <!-- show nothing -->
+        {% else %}
+        <div class="medium-3 large-3 columns">
+          <ul id="hours">
+            <li>Mon-Thu: 9am-8pm</li>
+            <li>Fri: 9am-5pm</li>
+            <li>Sat: 9am-4pm</li>
+            <li>Sun: 1pm-5pm</li>
+          </ul>
+        </div>
+        <div class="medium-3 large-3 columns left">
+          <p id="address">120 Civic Plaza<br>O'Fallon, IL 62269</p>
+          <a href="#" data-reveal-id="ofpl_map" data-reveal="" style="font-size:0.9875rem; margin-bottom:0px" class="button tiny radius">Map</a>
+        </div>
+        <div class="medium-2 large-2 columns">
+          <p id="phoneNumber">618-632-3783</p>
+          <div class="font-resizer hide-for-touch"><span class="icon-search-minus" id="minustext"></span> <span class="icon-font" id="textsizesymbol"></span> <span class="icon-search-plus" id="plustext"></span></div>
+        </div>
+        {% endif %}
+      </div><!-- /#header -->
+
+
+    </div><!-- /#sb-site -->
+
+  </body>
+
+</html>

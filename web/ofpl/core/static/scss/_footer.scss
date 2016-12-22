@@ -1,3 +1,5 @@
+@import "../bower/foundation/scss/foundation/components/_global.scss";
+
 @function grayscale($value) {
   @return #{ "grayscale(" + $value + ")" };
 }

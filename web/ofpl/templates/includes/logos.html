@@ -1,0 +1,9 @@
+{% load static %}
+
+<a href="/">
+  {% if page.page_skin == 'teens' %}
+    <img id="logo" src="{% static 'images/logo_teens.png' %}">
+  {% else %}
+    <img id="logo" src="{% static 'images/ofpl_logo.png' %}">
+  {% endif %}
+</a>
