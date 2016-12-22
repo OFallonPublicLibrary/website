@@ -1,5 +1,5 @@
 from .base import *
-fron .secret import Secret
+from .secret import Secret
 
 DEBUG=False
 
