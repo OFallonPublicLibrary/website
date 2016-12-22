@@ -22,7 +22,22 @@ from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 
+PAGE_SKIN_CHOICES = (
+  ('', 'Default'),
+  ('kids', 'Kids'),
+  ('teens', 'Teens'),
+)
+
+
 # Global Streamfield definition
+
+class PullQuoteBlock(StructBlock):
+    quote = TextBlock("Quote Title")
+    attribution = CharBlock()
+
+    class Meta:
+        icon = "openquote"
+
 
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
@@ -33,27 +48,17 @@ class ImageFormatChoiceBlock(FieldBlock):
     ))
 
 
+class HTMLAlignmentChoiceBlock(FieldBlock):
+    field = forms.ChoiceField(choices=(
+        ('normal', 'Normal'), ('full', 'Full width'),
+    ))
+
+
 class ImageBlock(StructBlock):
     image = ImageChooserBlock()
     caption = RichTextBlock()
     alignment = ImageFormatChoiceBlock()
 
-
-class CarouselBlock(StreamBlock):
-    image = ImageChooserBlock()
-    quotation = StructBlock([
-        ('text', TextBlock()),
-        ('author', CharBlock()),
-    ])
-    video = EmbedBlock()
-
-    class Meta:
-        icon='cogs'
-
-class HTMLAlignmentChoiceBlock(FieldBlock):
-    field = forms.ChoiceField(choices=(
-        ('normal', 'Normal'), ('full', 'Full width'),
-    ))
 
 class AlignedHTMLBlock(StructBlock):
     html = RawHTMLBlock()
@@ -70,7 +75,7 @@ class StandardStreamBlock(StreamBlock):
     intro = RichTextBlock(icon="pilcrow")
     paragraph = RichTextBlock(icon="pilcrow")
     aligned_image = ImageBlock(label="Aligned image", icon="image")
-    #pullquote = PullQuoteBlock()
+    pullquote = PullQuoteBlock()
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document = DocumentChooserBlock(icon="doc-full-inverse")
 
