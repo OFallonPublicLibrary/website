@@ -7,4 +7,4 @@ django-model-utils
 django-allauth==0.29.0
 django-compressor==2.1
 wagtail==1.8
-git+git://github.com/kevindice/wagtail-nav-menus.git@992587c
+git+git://github.com/kevindice/wagtail-nav-menus.git@8485bc
