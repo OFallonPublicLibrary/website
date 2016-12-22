@@ -23,7 +23,7 @@ from taggit.models import TaggedItemBase
 
 
 PAGE_SKIN_CHOICES = (
-  ('', 'Default'),
+  (' ', 'Default'),
   ('kids', 'Kids'),
   ('teens', 'Teens'),
 )
