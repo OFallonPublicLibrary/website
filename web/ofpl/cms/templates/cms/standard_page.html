@@ -1,20 +1,41 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
-
-{% block heading %}
-  <div class="page-header">
-
-    <h2>
-      {{ self.title }}
-      {% if self.date %}<small>{{ self.date }}</small>{% endif %}
-    </h2>
-{% endblock %}
-
 {% block content %}
-  {% if self.body %}
-    <div class="body-content">
-      {% include "cms/includes/streamfield.html" with content=self.body %}
-    </div>
-  {% endif %}
+  <div class="row">
+
+  
+    <div class="medium-9 large-10 medium-push-3 large-push-2 columns">
+
+      <a id="mainContent"></a>
+      <h2 id="title">{{ page.title }}</h2>
+      <strong>Breadcrumbs go here.</strong>
+
+      <!-- if calendar then put key here -->
+      <div id="content">
+        {% if self.body %}
+          <div class="body-content">
+            {% include "cms/includes/streamfield.html" with content=self.body %}
+          </div>
+        {% endif %}
+      </div><!-- /#content -->
+
+    </div><!-- end column -->
+
+
+    <div class="medium-3 large-2 medium-pull-9 large-pull-10 columns">
+
+      <div class="row">
+        <div class="small-12 columns panel">
+          <h3>{{ page.title }}</h3>
+          <ul class="side-nav">
+            <li><a href="#">Subnav goes here</a></li>
+          </ul>
+        </div><!-- column -->
+      </div><!-- row -->
+
+    </div><!-- column -->
+
+
+  </div><!-- row -->
 {% endblock%}
