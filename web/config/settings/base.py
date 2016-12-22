@@ -32,7 +32,9 @@ COMPRESS_ENABLED = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'new.ofpl.info'
+    'new.ofpl.info',
+    'newofpl.kevindice.com',
+    'ofpl.info'
 ]
 
 INTERNAL_IPS = [
