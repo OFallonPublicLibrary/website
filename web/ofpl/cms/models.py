@@ -141,7 +141,11 @@ class CarouselItem(LinkFields):
 
 
 class Skinable(models.Model):
-    page_skin = models.CharField(max_length=255, choices=PAGE_SKIN_CHOICES)
+    page_skin = models.CharField(
+        max_length=255,
+        choices=PAGE_SKIN_CHOICES,
+        default=PAGE_SKIN_CHOICES[0][0],
+    )
 
     class Meta:
         abstract = True
