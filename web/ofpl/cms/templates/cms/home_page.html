@@ -1,22 +1,42 @@
 {% extends "base.html" %}
 
-{% load compress static %}
+{% load compress static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
   <div class="row">
-      <div class="small-12 columns">
-          {{ body }}
+  <div class="small-12 columns">
+  <div class="row">
+    <div class="medium-12">
+      <div class="main-carousel">
+        <div class="main-carousel">
+          {% for item in page.carousel_items.all %}
+            <div>
+              <div class="row">
+                <div class="medium-12 columns">
+                  <a href="#">{% image item.image width-1920 height-1080 %}</a>
+                </div>
+                <div class="medium-12 columns">
+                  {{ item.caption|richtext }}
+                  <a href="{{ item.link }}">{{ item.link_text }}</a>
+                </div>
+              </div><!-- /.row -->
+            </div>
+          {% endfor %}
+        </div>
       </div>
+    </div>
+  </div>
+  </div>
   </div>
 {% endblock %}
 
 
 {% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <!--[if lt IE 8 ]>
   {% compress js %}
-    <script type="text/javascript" src="{% static '/bower/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/html5shiv.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/respond.js' %}"></script>
@@ -39,7 +59,6 @@
 <![endif]-->
 <!--[if IE 8 ]>
   {% compress js %}
-    <script type="text/javascript" src="{% static '/bower/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/html5shiv.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/respond.js' %}"></script>
@@ -60,8 +79,7 @@
   {% endcompress %}
 <![endif]-->
 <!--[if (gt IE 8)|!(IE)]><!-->
-  {% compress js %}
-    <script type="text/javascript" src="{% static '/bower/jquery/dist/jquery.js' %}"></script>
+  {# {% compress js %} #}
     <script type="text/javascript" src="{% static '/js/alertHide.js' %}"></script>
     <script type="text/javascript" src="{% static '/bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/slidebarsConfig.js' %}"></script>
@@ -79,7 +97,7 @@
     <script type="text/javascript" src="{% static '/js/textResize.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/homeCalendarFunctionality.js' %}"></script>
-  {% endcompress %}
+  {# {% endcompress %} #}
 <!--<![endif]-->
 
   <script type="text/javascript" src="http://imageserver.ebscohost.com/branding/tabbedsearch/js/FormProcessing.js"></script>

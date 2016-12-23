@@ -198,9 +198,9 @@
 
 
     {% block js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!--[if lt IE 8 ]>
       {% compress js %}
-        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
@@ -221,7 +221,6 @@
     <![endif]-->
     <!--[if IE 8 ]>
       {% compress js %}
-        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
@@ -240,8 +239,7 @@
       {% endcompress %}
     <![endif]-->
     <!--[if (gt IE 8)|!(IE)]><!-->
-      {% compress js %}
-        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
+     {# {% compress js %} #}
         <script type="text/javascript" src="{% static 'js/lazyLoadSideBarSocialImages.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/alertHide.js' %}"></script>
         <script type="text/javascript" src="{% static 'bower/Slidebars/distribution/0.10.2/slidebars.js' %}"></script>
@@ -255,7 +253,7 @@
         <script type="text/javascript" src="{% static 'js/textResize.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/calendarEqualize.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/siteSearchModifications.js' %}"></script>
-      {% endcompress %}
+     {# {% endcompress %} #}
     <!--<![endif]-->
 
       <script type="text/javascript" src="http://imageserver.ebscohost.com/branding/tabbedsearch/js/FormProcessing.js"></script>
@@ -271,3 +269,4 @@
   </body>
 
 </html>
+v

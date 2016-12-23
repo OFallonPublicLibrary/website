@@ -1,7 +1,5 @@
-
-            // This is for the search box
+// This is for the search box
 $(function() {
-
 
     var searchVal = "";
     var searchCurrentForm = 0;
@@ -14,7 +12,7 @@ $(function() {
     /**
     * the element
     */
-    var $ui         = $('#ui_element');
+    var $ui = $('#ui_element');
 
     function srchbxUp(){
         $ui.find('.srchbx_up')
@@ -37,25 +35,21 @@ $(function() {
     }
 
     function initializeListeners(){
-
-                
-                
                 /**
-                * on focus and on click display the dropdown, 
+                * on focus and on click display the dropdown,
                 * and change the arrow image
                 */
                 $ui.find('.srchbx_input').bind('focus click',function(){
                     srchbxDown();
                 });
-                
+
                 /**
-                * on mouse leave hide the dropdown, 
+                * on mouse leave hide the dropdown,
                 * and change the arrow image
                 */
                 $ui.bind('mouseleave',function(){
                     srchbxUp();
                 });
-                
 
                 /**
                 *
@@ -67,7 +61,6 @@ $(function() {
                     srchbxUp();
                 });
 
-                
                 /**
                 * selecting all checkboxes
                 */
@@ -90,45 +83,42 @@ function saveSearchVal(){
 
 function setFormToCatalog(){
     saveSearchVal();
-    $("#searchFields").html("
-        <input value=\"" + searchVal + "\" id=\"searchBoxInput\" autocomplete=\"off\" name=\"keyword\" tabindex=\"5\" class=\"srchbx_input\" placeholder=\"Search\" type=\"text\"/>
-        <input type=\"hidden\" name=\"ctx\" value=\"263.1033.0.0.1\" />
-    ");
-    
+    $("#searchFields").html("<input value=\"" + searchVal +
+        "\" id=\"searchBoxInput\" autocomplete=\"off\" name=\"keyword\"" +
+        " tabindex=\"5\" class=\"srchbx_input\" placeholder=\"Search\"" +
+        " type=\"text\"/><input type=\"hidden\" name=\"ctx\" value=\"263.1033.0.0.1\" />");
+
     $('#ui_element').attr('action', 'http://search.illinoisheartland.org/view.aspx');
     $('#ui_element').attr('method', 'get');
     $('#ui_element').attr('onsubmit', "");
     //$("#searchTypeFilter").hide(200);
-    
+
     searchCurrentForm = 0;
 }
 
 
 function setFormToDatabases(){
     saveSearchVal();
-        $("#searchFields").html("
-            <input value=\"" + searchVal + "\" id=\"searchBoxInput\" autocomplete=\"off\" name=\"uquery\" size=\"65\" tabindex=\"5\" class=\"srchbx_input\" placeholder=\"Search\" type=\"text\"/>
+        $("#searchFields").html("<input value=\"" + searchVal + 
+            "\" id=\"searchBoxInput\" autocomplete=\"off\" name=\"uquery\" size=\"65\" tabindex=\"5\" class=\"srchbx_input\" placeholder=\"Search\" type=\"text\"/>" +
 
-            <input name=\"direct\" value=\"true\" type=\"hidden\">
-            <input name=\"scope\" value=\"site\" type=\"hidden\">
-            <input name=\"site\" value=\"eds-live\" type=\"hidden\">
-            <input name=\"profile\" value=\"eds\" type=\"hidden\">
-            <input name=\"authtype\" value=\"ip,guest\" type=\"hidden\">
-            <input name=\"custid\" value=\"s5672256\" type=\"hidden\">
-            <input name=\"groupid\" value=\"main\" type=\"hidden\">
-            <input name=\"bquery\" value=\"\" type=\"hidden\">
-            <!--<input name=\"cli0\" value=\"FT\" type=\"hidden\">
-            <input name=\"clv0\" type=\"hidden\" value='N'>
-            <input  type=\"checkbox\" name=\"fulltext_checkbox\" id=\"fulltext_checkbox_all\" onclick=\"limittoFullText(this.form)\" >
+            "<input name=\"direct\" value=\"true\" type=\"hidden\">" +
+            "<input name=\"scope\" value=\"site\" type=\"hidden\">" +
+            "<input name=\"site\" value=\"eds-live\" type=\"hidden\">" +
+            "<input name=\"profile\" value=\"eds\" type=\"hidden\">" +
+            "<input name=\"authtype\" value=\"ip,guest\" type=\"hidden\">" +
+            "<input name=\"custid\" value=\"s5672256\" type=\"hidden\">" +
+            "<input name=\"groupid\" value=\"main\" type=\"hidden\">" +
+            "<input name=\"bquery\" value=\"\" type=\"hidden\">" +
+            "<!--<input name=\"cli0\" value=\"FT\" type=\"hidden\">" +
+            "<input name=\"clv0\" type=\"hidden\" value='N'>" +
+            "<input  type=\"checkbox\" name=\"fulltext_checkbox\" id=\"fulltext_checkbox_all\" onclick=\"limittoFullText(this.form)\" >" +
 
-            <input name=\"cli1\" value=\"RV\" type=\"hidden\"><input name=\"clv1\"  type=\"hidden\" value='N'><input  name=\"scholarly_checkbox\" id=\"scholarly_checkbox_articles\" onclick=\"limittoScholarly(this.form)\" type=\"checkbox\">
+            "<input name=\"cli1\" value=\"RV\" type=\"hidden\"><input name=\"clv1\"  type=\"hidden\" value='N'><input  name=\"scholarly_checkbox\" id=\"scholarly_checkbox_articles\" onclick=\"limittoScholarly(this.form)\" type=\"checkbox\">" +
 
-            <input name=\"cli2\" value=\"FC\" type=\"hidden\"><input name=\"clv2\" type=\"hidden\" value='N'><input  name=\"catalog_only_checkbox\" id=\"catalog_only_checkbox\" onclick=\"limittoCatalog(this.form)\" type=\"checkbox\">
+            "<input name=\"cli2\" value=\"FC\" type=\"hidden\"><input name=\"clv2\" type=\"hidden\" value='N'><input  name=\"catalog_only_checkbox\" id=\"catalog_only_checkbox\" onclick=\"limittoCatalog(this.form)\" type=\"checkbox\">" +
 
--->
-
-
-    ");
+            "-->");
 
     $('#ui_element').attr('action', 'http://search.ebscohost.com/login.aspx');
     $('#ui_element').attr('method', 'get');
@@ -141,21 +131,21 @@ function setFormToDatabases(){
 
 function setFormToSiteSearch(){
     saveSearchVal();
-    $("#searchFields").html("
-        <input type=\"hidden\" name=\"si\" value=\"4808730\">
-        <input type=\"hidden\" name=\"pid\" value=\"r\">
-        <input type=\"hidden\" name=\"n\" value=\"0\">
-        <input type=\"hidden\" name=\"_charset_\" value=\"\">
-        <input type=\"hidden\" name=\"bcd\" value=\"&#247;\">
-        <input value=\"" + searchVal + "\" type=\"text\" name=\"query\" id=\"searchBoxInput\" autocomplete=\"off\" class=\"srchbx_input\" placeholder=\"Search\"> 
-    ");
-    
+    $("#searchFields").html(
+        "<input type=\"hidden\" name=\"si\" value=\"4808730\">" +
+        "<input type=\"hidden\" name=\"pid\" value=\"r\">" +
+        "<input type=\"hidden\" name=\"n\" value=\"0\">" +
+        "<input type=\"hidden\" name=\"_charset_\" value=\"\">" +
+        "<input type=\"hidden\" name=\"bcd\" value=\"&#247;\">" +
+        "<input value=\"" + searchVal + "\" type=\"text\" name=\"query\" id=\"searchBoxInput\" autocomplete=\"off\" class=\"srchbx_input\" placeholder=\"Search\">"
+    );
+
     $('#ui_element').attr('action', 'http://search.freefind.com/find.html');
     $('#ui_element').attr('method', 'get');
     $('#ui_element').attr('onsubmit', "");
-    
+
     //$("#searchTypeFilter").hide(200);
-    
+
     searchCurrentForm = 2;
 }
 
