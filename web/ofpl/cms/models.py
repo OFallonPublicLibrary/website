@@ -9,6 +9,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
+from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
 from wagtail.wagtailsearch import index
 
 from wagtail.wagtailcore.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, \
@@ -183,4 +184,29 @@ class StandardPage(Page, Skinable):
         FieldPanel('title', classname="full title"),
         StreamFieldPanel('body'),
         FieldPanel('page_skin'),
+    ]
+
+
+# Form Page
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', related_name='form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
+        FieldPanel('intro', classname="full"),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text', classname="full"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email"),
     ]
