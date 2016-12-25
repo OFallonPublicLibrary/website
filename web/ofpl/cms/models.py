@@ -99,7 +99,6 @@ class LinkFields(models.Model):
         related_name='+',
         on_delete=models.SET_NULL
     )
-    link_text = models.CharField(max_length=255)
 
     @property
     def link(self):
@@ -111,7 +110,6 @@ class LinkFields(models.Model):
             return self.link_external
 
     panels = [
-        FieldPanel('link_text'),
         FieldPanel('link_external'),
         PageChooserPanel('link_page'),
         DocumentChooserPanel('link_document'),
@@ -130,10 +128,13 @@ class CarouselItem(LinkFields):
         related_name='+'
     )
     caption = RichTextField()
+    link_text = models.CharField(max_length=255)
+
 
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
+        FieldPanel('link_text'),
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
@@ -210,3 +211,13 @@ class FormPage(AbstractEmailForm):
             FieldPanel('subject'),
         ], "Email"),
     ]
+
+
+# PageAlias Page (for redirecting to external URLs)
+
+class RedirectPage(Page, LinkFields):
+
+    def serve(self, request):
+        return redirect(self.link, permanent=False)
+
+RedirectPage.content_panels = [FieldPanel('title')] + LinkFields.panels
