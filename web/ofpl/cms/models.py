@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from django shortcuts import redirect
+from django.shortcuts import redirect
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
