@@ -4,7 +4,7 @@
   <a id="navigation"></a>
   <nav>
 		<ul class="sb-menu">
-      {% get_nav_menu 'top' %}
+      {% get_nav_menu 'top' link_template='nav_menus/mobile_menu_link.html' category_template='nav_menus/mobile_nav_category.html' %}
 			<li><a href="#top" onClick="setTimeout(function(){document.getElementById('firstSocialLink').focus();},1500);" class="sb-open-right">Follow Us On Social Media!</a></li>
 			<!--<li><small>Slidebars &copy; 2014 Adam Smith</small></li>-->
 		</ul>
