@@ -15,6 +15,7 @@
 
 <!--
     <form action="{% url 'search' %}" method="get">
+            <li class="arrow">
         <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
         <input type="submit" value="Search" class="button">
     </form>
@@ -32,17 +33,38 @@
             {% endfor %}
           </ul>
 
+
+      <div class="pagination-centered">
+        <ul class="pagination" role="menubar" aria-label="Pagination">
           {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+            <li class="arrow">
+              <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">&laquo; Previous</a>
+            </li>
+          {% else %}
+            <li class="arrow unavailable">
+              &laquo; Previous
+            </li>
           {% endif %}
 
           {% for x in page_number_range %}
-            <a>{{ x }}</a>
+            <li><a href="{% url 'search' %}query={{ search_query|urlencode }}&amp;page={{ x }}">{{ x }}</a></li>
           {% endfor %}
 
           {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+            <li class="arrow">
+              <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next &raquo;</a>
+            </li>
+          {% else %}
+            <li class="arrow unavailable">
+              Next &raquo;
+            </li>
           {% endif %}
+              
+        </ul>
+      </div>
+
+
+
         {% elif search_query %}
           No results found
         {% endif %}
