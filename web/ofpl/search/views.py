@@ -29,7 +29,7 @@ def search(request):
         search_results = paginator.page(paginator.num_pages)
 
     page_number_range = []
-    for x in search_query.page_range:
+    for x in paginator.page_range:
         if x > search_query.number - 5 and x < search_query.number + 5:
              page_number_range.append(x)
 
