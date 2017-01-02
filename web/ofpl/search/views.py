@@ -30,7 +30,7 @@ def search(request):
 
     page_number_range = []
     for x in paginator.page_range:
-        if x > search_query.number - 5 and x < search_query.number + 5:
+        if x > search_results.number - 5 and x < search_results.number + 5:
              page_number_range.append(x)
 
     return render(request, 'search/search.html', {
