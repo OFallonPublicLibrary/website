@@ -8,3 +8,4 @@ django-allauth==0.29.0
 django-compressor==2.1
 wagtail==1.8
 git+git://github.com/kevindice/wagtail-nav-menus.git@7dd2c8
+elasticsearch>=5.0.0,<6.0.0

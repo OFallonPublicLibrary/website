@@ -5,6 +5,12 @@ services:
      container_name: ofpl-db
      volumes:
        - "db-data:/var/lib/postgresql/data"
+   es:
+     image: elasticsearch
+     volumes:
+       - "es-data:/usr/share/elasticsearch/data"
+     expose:
+       - "9200"
    web:
      build:
        context: ./web
@@ -19,8 +25,10 @@ services:
        - ./media:/media
      depends_on:
        - db
+       - es
      ports:
        - "8000:8000"
 
 volumes:
   db-data:
+  es-data:
