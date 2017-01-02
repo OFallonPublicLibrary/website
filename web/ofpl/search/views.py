@@ -37,4 +37,5 @@ def search(request):
         'search_query': search_query,
         'search_results': search_results,
         'page_number_range': page_number_range,
+        'current_page': paginator.number,
     })
