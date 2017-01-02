@@ -21,26 +21,32 @@
 -->
 
         {% if search_results %}
-            <ul>
-                {% for result in search_results %}
-                    <li>
-                        <h5><a href="{% pageurl result %}">{{ result }}</a></h5>
-                        {% if result.search_description %}
-                            {{ result.search_description|safe }}
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
+          <ul>
+            {% for result in search_results %}
+              <li>
+                <h5><a href="{% pageurl result %}">{{ result }}</a></h5>
+                {% if result.search_description %}
+                  {{ result.search_description|safe }}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
 
-            {% if search_results.has_previous %}
-                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-            {% endif %}
+          {% if search_results.has_previous %}
+            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+          {% endif %}
 
-            {% if search_results.has_next %}
-                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+          {% for x in search_results.page_range %}
+            {% if x > (search_results.number - 5) or x < (search_results.number + 5) %}
+              <a>{{ x }}</a>
             {% endif %}
+          {% endfor %}
+
+          {% if search_results.has_next %}
+            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+          {% endif %}
         {% elif search_query %}
-            No results found
+          No results found
         {% endif %}
       </div>
     </div>
