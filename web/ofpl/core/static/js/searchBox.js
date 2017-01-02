@@ -132,15 +132,10 @@ function setFormToDatabases(){
 function setFormToSiteSearch(){
     saveSearchVal();
     $("#searchFields").html(
-        "<input type=\"hidden\" name=\"si\" value=\"4808730\">" +
-        "<input type=\"hidden\" name=\"pid\" value=\"r\">" +
-        "<input type=\"hidden\" name=\"n\" value=\"0\">" +
-        "<input type=\"hidden\" name=\"_charset_\" value=\"\">" +
-        "<input type=\"hidden\" name=\"bcd\" value=\"&#247;\">" +
         "<input value=\"" + searchVal + "\" type=\"text\" name=\"query\" id=\"searchBoxInput\" autocomplete=\"off\" class=\"srchbx_input\" placeholder=\"Search\">"
     );
 
-    $('#ui_element').attr('action', 'http://search.freefind.com/find.html');
+    $('#ui_element').attr('action', '/search');
     $('#ui_element').attr('method', 'get');
     $('#ui_element').attr('onsubmit', "");
 
