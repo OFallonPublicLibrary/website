@@ -28,7 +28,13 @@ def search(request):
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
 
+    page_number_range = []
+    for x in search_query.page_range:
+        if x > search_query.number - 5 and x < search_query.number + 5:
+             page_number_range.append(x)
+
     return render(request, 'search/search.html', {
         'search_query': search_query,
         'search_results': search_results,
+        'page_number_range': page_number_range,
     })

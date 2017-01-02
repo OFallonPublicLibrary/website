@@ -36,10 +36,8 @@
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
           {% endif %}
 
-          {% for x in search_results.page_range %}
-            {% if x > (search_results.number - 5) or x < (search_results.number + 5) %}
-              <a>{{ x }}</a>
-            {% endif %}
+          {% for x in page_number_range %}
+            <a>{{ x }}</a>
           {% endfor %}
 
           {% if search_results.has_next %}
