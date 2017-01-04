@@ -1,6 +1,7 @@
+{% load wagtailcore_tags %}
 <div id="ofpl_map" class="reveal-modal x-large" data-reveal>
   <h2>Google Maps</h2>
-  <p>Description text goes here</p>
+  {{ settings.cms.mapdescription.description|richtext }}
   <div class="flex-video">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.912184840594!2d-89.913573!3d38.58186999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887606bb01eb424f%3A0xb1c697bccad60f86!2sO&#39;Fallon+Public+Library!5e0!3m2!1sen!2sus!4v1396114589659" width="800" height="600" frameborder="0" style="border:0"></iframe>
   </div>

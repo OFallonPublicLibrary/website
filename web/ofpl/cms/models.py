@@ -227,10 +227,21 @@ RedirectPage.content_panels = [FieldPanel('title')] + LinkFields.panels
 
 # Hours Setting
 
-@register_setting(icon="time")
+@register_setting(icon='time')
 class Hours(BaseSetting):
     hours = RichTextField()
 
     panels = [
         FieldPanel('hours'),
+    ]
+
+
+# Google Maps Description
+
+@register_setting(icon='cog')
+class MapDescription(BaseSetting):
+    description = RichTextField()
+
+    panels = [
+        FieldPanel('description'),
     ]
