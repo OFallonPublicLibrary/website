@@ -1,18 +1,10 @@
+{% load wagtailcore_tags %}
 <ul class="breadcrumbs">
-        <li><a id="breadcrumbHome" href="<%- @site.url %>">Home</a></li>
-        <% if @document.isTopLevelPage is true: %>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% else if @document.secondaryPage is true: %>
-          <% pathSplit = @document.fullPath.split "/" %>
-          <% page = @getFile({locationOfChildren:pathSplit[pathSplit.length - 2], ignored:false}) %>
-          <li><a href="<%- @site.url + page.get('url') %>"><%- page.get('title') %></a></li>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% else: %>
-          <% secondaryParent = @getFileAtPath(@document.parentPageFileName) %>
-          <% pathSplit = secondaryParent.get('fullPath').split "/" %>
-          <% page = @getFile({locationOfChildren:pathSplit[pathSplit.length - 2], ignored:false}) %>
-          <li><a href="<%- @site.url + page.get('url') %>"><%- page.get('title') %></a></li>
-          <li><a href="<%- @site.url + secondaryParent.get('url') %>"><%- secondaryParent.get('title') %></a></li>
-          <li class="current"><a href="<%- @site.url + @document.url %>"><%- @document.title %></a></li>
-        <% end %>
-      </ul>
+  {% for page in self.get_ancestors %}
+    {% if page.is_root == False %}
+      <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  <li class="active">{{ self.title }}</li>
+</ul>
