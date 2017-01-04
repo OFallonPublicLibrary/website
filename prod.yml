@@ -1,5 +1,6 @@
 version: '2'
 services:
+<<<<<<< Updated upstream
   db:
     image: postgres
     container_name: ofpl-db
@@ -31,7 +32,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "8084:8084"
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./static:/static
