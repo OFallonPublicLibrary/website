@@ -222,3 +222,5 @@ class RedirectPage(Page, LinkFields):
         return redirect(self.link, permanent=False)
 
 RedirectPage.content_panels = [FieldPanel('title')] + LinkFields.panels
+
+
