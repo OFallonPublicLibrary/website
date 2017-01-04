@@ -1,4 +1,4 @@
-{% load static wagtailuserbar compress nav_menu_tags %}
+{% load static wagtailuserbar compress nav_menu_tags wagtailcore_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -62,12 +62,9 @@
           <!-- show nothing -->
         {% else %}
         <div class="medium-3 large-3 columns">
-          <ul id="hours">
-            <li>Mon-Thu: 9am-8pm</li>
-            <li>Fri: 9am-5pm</li>
-            <li>Sat: 9am-4pm</li>
-            <li>Sun: 1pm-5pm</li>
-          </ul>
+          <div class="hours">
+            {{ settings.cms.hours.hours|richtext }}
+          </div>
         </div>
         <div class="medium-3 large-3 columns left">
           <p id="address">120 Civic Plaza<br>O'Fallon, IL 62269</p>

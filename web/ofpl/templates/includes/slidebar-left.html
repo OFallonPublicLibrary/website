@@ -1,4 +1,4 @@
-{% load static nav_menu_tags %}
+{% load static nav_menu_tags wagtailcore_tags %}
 <div class="sb-slidebar sb-left sb-momentum-scrolling">
   <h2 id="menuHeader" class="text-center">Menu</h2>
   <a id="navigation"></a>
@@ -21,7 +21,9 @@
     <hr>
 
     <h3>Hours</h3>
-    <%- hoursText %>
+    <div class="hours">
+      {{ settings.cms.hours.hours|richtext }}
+    </div>
 
     <hr>
 

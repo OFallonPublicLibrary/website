@@ -323,8 +323,10 @@ h3 #title{
     margin-right: 1em;
 }
 
-#hours{
-	list-style: none;
+.hours{
+	ul{
+		list-style-type: none;
+	}
 	margin-top: 1.2em;
 }
 
@@ -356,7 +358,7 @@ h3 #title{
 }
 
 @media only screen and (max-width: 750px){
-	#hours{
+	.header .hours{
 		position: relative;
 		left: -17px;
 		width: 140px;

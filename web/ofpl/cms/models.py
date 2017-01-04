@@ -18,6 +18,7 @@ from wagtail.wagtailcore.blocks import TextBlock, StructBlock, StreamBlock, Fiel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -224,3 +225,12 @@ class RedirectPage(Page, LinkFields):
 RedirectPage.content_panels = [FieldPanel('title')] + LinkFields.panels
 
 
+# Hours Setting
+
+@register_setting(icon="time")
+class Hours(BaseSetting):
+    hours = RichTextField()
+
+    panels = [
+        FieldPanel('hours'),
+    ]
