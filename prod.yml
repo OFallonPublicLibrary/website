@@ -1,43 +1,43 @@
 version: '2'
 services:
-    db:
-      image: postgres
-      container_name: ofpl-db
-      volumes:
-        - "db-data:/var/lib/postgresql/data"
-    es:
-     image: elasticsearch
-     volumes:
-       - "es-data:/usr/share/elasticsearch/data"
-     expose:
-       - "9200"
-    web:
-      build:
-        context: ./web
-        args:
-          env: prod
-      command: sh -c "python manage.py collectstatic --noinput; gunicorn config.wsgi:application --name ofpl --bind 0.0.0.0:8000 --workers 3 --reload"
-      environment:
-       - DJANGO_SETTINGS_MODULE=config.settings.prod
-      volumes:
-        - ./web:/app
-        - ./static:/static
-        - ./media:/media
-      depends_on:
-        - db
-        - es
-      ports:
-        - "8000:8000"
-    nginx:
-      image: nginx:latest
-      ports:
-        - "80:80"
-      volumes:
-        - ./nginx:/etc/nginx/conf.d
-        - ./static:/static
-        - ./media:/media
-      depends_on:
-        - web
+  db:
+    image: postgres
+    container_name: ofpl-db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+  es:
+    image: elasticsearch
+    volumes:
+      - "es-data:/usr/share/elasticsearch/data"
+    expose:
+      - "9200"
+  web:
+    build:
+      context: ./web
+      args:
+        env: prod
+    command: sh -c "python manage.py collectstatic --noinput; gunicorn config.wsgi:application --name ofpl --bind 0.0.0.0:8000 --workers 3 --reload"
+    environment:
+     - DJANGO_SETTINGS_MODULE=config.settings.prod
+    volumes:
+      - ./web:/app
+      - ./static:/static
+      - ./media:/media
+    depends_on:
+      - db
+      - es
+    ports:
+      - "8000:8000"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/static
+      - ./media:/media
+    depends_on:
+      - web
 
 volumes:
   db-data:
