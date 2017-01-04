@@ -245,3 +245,13 @@ class MapDescription(BaseSetting):
     panels = [
         FieldPanel('description'),
     ]
+
+# Site Alert
+
+@register_setting(icon='warning')
+class Alert(BaseSetting):
+    message = RichTextField()
+
+    panels = [
+        FieldPanel('message'),
+    ]
