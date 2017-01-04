@@ -46,7 +46,7 @@
       {% endif %}
 
        
-      {% if settings.cms.alert.message %}
+      {% if settings.cms.alert.show %}
         <div id="alertBox" class="alert text-center">
           <div style="float:right"><button id="closeAlertButton" class="tiny alert">&#x2716;</button></div>
           Attention: {{ settings.cms.alert.message|richtext }}
