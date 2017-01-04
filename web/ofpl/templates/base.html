@@ -46,10 +46,10 @@
       {% endif %}
 
        
-      {% if alert %}
+      {% if settings.cms.alert.message %}
         <div id="alertBox" class="alert text-center">
           <div style="float:right"><button id="closeAlertButton" class="tiny alert">&#x2716;</button></div>
-          Attention: {{ alert }}
+          Attention: {{ settings.cms.alert.message|richtext }}
         </div>
       {% endif %}
 
