@@ -1,4 +1,4 @@
-{% load static %}
+{% load static nav_menu_tags %}
 
 <div id="footer-bottom">
 <div class="row">
@@ -7,11 +7,7 @@
       <img id="footer-logo" src="{% static 'images/ofpl_logo.png' %}">
     </a>
     <ul class="footer-links">
-      <li><a href="<%- @site.url %>about">About</a></li>
-      <li><a href="<%- @site.url %>policies">Policies</a></li>
-      <li><a href="<%- @site.url %>contact">Contact</a></li>
-      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
-      <!--<li><a href="<%- @site.url %>about">About</a></li>-->
+      {% get_nav_menu 'bottom' link_template='nav_menus/bottom_menu_link.html' category_template='nav_menus/bottom_nav_category.html' %}
     </ul>
   </div>
   <div class="medium-4 columns">
