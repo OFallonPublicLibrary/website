@@ -88,7 +88,7 @@ function setFormToCatalog(){
         " tabindex=\"5\" class=\"srchbx_input\" placeholder=\"Search\"" +
         " type=\"text\"/><input type=\"hidden\" name=\"ctx\" value=\"263.1033.0.0.1\" />");
 
-    $('#ui_element').attr('action', 'http://search.illinoisheartland.org/view.aspx');
+    $('#ui_element').attr('action', 'https://search.illinoisheartland.org/view.aspx');
     $('#ui_element').attr('method', 'get');
     $('#ui_element').attr('onsubmit', "");
     //$("#searchTypeFilter").hide(200);
@@ -120,7 +120,7 @@ function setFormToDatabases(){
 
             "-->");
 
-    $('#ui_element').attr('action', 'http://search.ebscohost.com/login.aspx');
+    $('#ui_element').attr('action', 'https://search.ebscohost.com/login.aspx');
     $('#ui_element').attr('method', 'get');
     $('#ui_element').attr('onsubmit', "ebscoPreProcess(this)");
     //$("#searchTypeFilter").show(200);

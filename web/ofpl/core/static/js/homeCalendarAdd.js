@@ -1,1 +1,1 @@
-document.write("<script src=\"http://ofpl.info/scripts/interactiveCalendar.js\"></script>");
+document.write("<script src=\"https://ofpl.info/scripts/interactiveCalendar.js\"></script>");
