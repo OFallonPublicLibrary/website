@@ -250,7 +250,7 @@ class MapDescription(BaseSetting):
 
 @register_setting(icon='warning')
 class Alert(BaseSetting):
-    show = models.BooleanField()
+    show = models.BooleanField(default=False)
     message = RichTextField()
 
     panels = [
