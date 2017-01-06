@@ -28,6 +28,8 @@ if settings.DEBUG:
 # Normal URL Definition
 normalpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^calendar/', include('ofpl.calendar.urls', namespace='calendar')),
+    url(r'^swingtime/', include('swingtime.urls')),
 ]
 
 # Auth-Related

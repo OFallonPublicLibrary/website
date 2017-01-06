@@ -55,6 +55,7 @@ STOCK_APPS = [
 
 OTHER_APPS = [
     'compressor',
+    'swingtime',
 ]
 
 SOCIAL_APPS = [
