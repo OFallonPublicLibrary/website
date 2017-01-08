@@ -55,6 +55,7 @@ STOCK_APPS = [
 
 OTHER_APPS = [
     'compressor',
+    'swingtime',
 ]
 
 SOCIAL_APPS = [
@@ -89,6 +90,7 @@ PROJECT_APPS = [
     'ofpl.core',
     'ofpl.cms',
     'ofpl.search',
+    'ofpl.calendar',
 ]
 
 INSTALLED_APPS = STOCK_APPS + OTHER_APPS + SOCIAL_APPS + WAGTAIL_APPS + PROJECT_APPS
