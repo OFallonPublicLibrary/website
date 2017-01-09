@@ -1,6 +1,9 @@
 from datetime import datetime, date, timedelta
 from dateutil import rrule
 
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.contenttypes.models import ContentType
@@ -21,7 +24,7 @@ class EventType(models.Model):
         return self.label
 
 
-class Event(models.Model):
+class Event(ClusterableModel):
     title = models.CharField(_('title'), max_length=32)
     description = models.CharField(_('description'), max_length=200)
     event_type = models.ForeignKey(EventType, verbose_name=_('event type'))
@@ -36,8 +39,8 @@ class Event(models.Model):
 
     def add_occurrences(self, start_time, end_time, **rrule_params):
         '''
-        Add one or more occurences to the event using a comparable API to 
-        ``dateutil.rrule``. 
+        Add one or more occurences to the event using a comparable API to
+        ``dateutil.rrule``.
 
         If ``rrule_params`` does not contain a ``freq``, one will be defaulted
         to ``rrule.DAILY``.
@@ -125,7 +128,7 @@ class Occurrence(models.Model):
     '''
     start_time = models.DateTimeField(_('start time'))
     end_time = models.DateTimeField(_('end time'))
-    event = models.ForeignKey(Event, verbose_name=_('event'), editable=False)
+    event = ParentalKey(Event, verbose_name=_('event'), editable=False)
 
     objects = OccurrenceManager()
 
