@@ -10,7 +10,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
 
+from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.fields import RichTextField
+
 from .conf import calendar_settings as calendar_settings
+
 
 class EventType(models.Model):
     abbr = models.CharField(_('abbreviation'), max_length=4, unique=True)
@@ -24,10 +29,28 @@ class EventType(models.Model):
         return self.label
 
 
-class Event(ClusterableModel):
-    title = models.CharField(_('title'), max_length=32)
-    description = models.CharField(_('description'), max_length=200)
-    event_type = models.ForeignKey(EventType, verbose_name=_('event type'))
+class CalendarIndexPageSingleton(Page):
+    content = RichTextField()
+
+    content_panels = [
+        FieldPanel('title', classname='full title'),
+        FieldPanel('content'),
+    ]
+
+
+class Event(Page):
+    event_type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
+    content = RichTextField()
+
+    parent_page_types = [
+        CalendarIndexPageSingleton
+    ]
+
+    content_panels = [
+        FieldPanel('title', classname='title full'),
+        FieldPanel('event_type'),
+        FieldPanel('content'),
+    ]
 
     class Meta:
         verbose_name = _('event')
