@@ -23,8 +23,11 @@ def register_admin_urls():
 def register_permissions():
     return Permission.objects.filter(
         content_type__app_label='calendar',
-    ).exclude(
-        codename__in=['add_calendar_index_page_singleton', 'delete_calendar_index_page_singleton'],
+        codename__in=[
+            'add_occurrence',
+            'change_occurrence',
+            'delete_occurrence',
+        ],
     )
 
 
