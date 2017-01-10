@@ -3,5 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^(?P<year>\d+)/$', views.index, name='index'),
+    url(r'^(?P<year>\d+)/(?P<month>\d+)/$', views.index, name='index'),
     url(r'^add/$', views.add, name='add'),
 ]

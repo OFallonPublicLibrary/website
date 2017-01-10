@@ -1,9 +1,17 @@
 {% extends "wagtailadmin/base.html" %}
+{% load staticfiles %}
+
 {% block titletag %}Calendar{% endblock %}
 
 {% block extra_js %}
     {{ block.super }}
 {% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'calendar/css/admin.css' %}" type="text/css" />
+{% endblock %}
+
 
 {% block content %}
     {% if user_can_add %}
@@ -11,4 +19,14 @@
     {% else %}
         {% include "wagtailadmin/shared/header.html" with title="Calendar" icon="date" search_url="calendar:index" %}
     {% endif %}
+
+    <div class="nice-padding">
+        <div class="">
+          <a class="button bicolor icon icon-arrow-left" href="">Previous</a>
+          <a class="button bicolor icon icon-arrow-right float-right" href="">Next</a>
+        </div>
+        <div class="">
+            <h2>{{ monthyear_heading }}</h2>
+        </div>
+    </div>
 {% endblock %}
