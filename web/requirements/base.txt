@@ -9,4 +9,5 @@ django-compressor==2.1
 wagtail==1.8
 git+git://github.com/kevindice/wagtail-nav-menus.git@7dd2c8
 elasticsearch>=5.0.0,<6.0.0
-django-swingtime
+python-dateutil==2.6.0
+pytz
