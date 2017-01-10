@@ -2,7 +2,8 @@ from django.conf.urls import include, url
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Permission
 
-from wagtail.wagtailadmin.menu import MenuItem
+from wagtail.wagtailadmin.menu import MenuItem, SubmenuMenuItem, Menu
+from .menu import calendar_menu
 from wagtail.wagtailcore import hooks
 from . import urls
 from .models import Event, Occurrence, EventType
@@ -31,10 +32,33 @@ def register_permissions():
     )
 
 
-#class EventTypeAdmin(ModelAdmin):
-#    model = EventType
-#    menu_label = 'Event Types'
-#    menu_icon = 'tag'
+class CalendarMenuItem(SubmenuMenuItem):
+    template = 'calendar/calendar_menu_item.html'
+
+
+@hooks.register('register_admin_menu_item')
+def register_calendar_menu():
+    return CalendarMenuItem('Calendar', calendar_menu, classnames='icon icon-date', order=300)
+
+
+class EventTypeAdmin(ModelAdmin):
+    model = EventType
+    menu_label = 'Event Types'
+    menu_icon = 'tag'
+
+    def register_me(self):
+        @hooks.register('register_permissions')
+        def register_permissions():
+            return self.get_permissions_for_registration()
+
+        @hooks.register('register_calendar_menu_item')
+        def register_event_tag():
+            return self.get_menu_item()
+
+        @hooks.register('register_admin_urls')
+        def register_admin_urls():
+            return self.get_admin_urls_for_registration()
+
 
 
 #class EventAdmin(ModelAdmin):
@@ -60,6 +84,9 @@ def register_permissions():
 #        )
 
 
-#modeladmin_register(CalendarAdminGroup)
+
+
+EventTypeAdmin().register_me()
+
 
 
