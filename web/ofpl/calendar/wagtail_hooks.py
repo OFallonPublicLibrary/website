@@ -39,13 +39,24 @@ def register_permissions():
     )
 
 
-class CalendarMenuItem(SubmenuMenuItem):
+class CalendarGridMenuItem(MenuItem):
+    pass
+
+
+@hooks.register('register_calendar_menu_item')
+def register_calendar_grid_menu_item():
+    return CalendarGridMenuItem(
+        'Calendar Grid', reverse('calendar:index'), classnames='icon icon-date', order=100
+    )
+
+
+class CalendarSubmenuItem(SubmenuMenuItem):
     template = 'calendar/calendar_menu_item.html'
 
 
 @hooks.register('register_admin_menu_item')
 def register_calendar_menu():
-    return CalendarMenuItem('Calendar', calendar_menu, classnames='icon icon-date', order=200)
+    return CalendarSubmenuItem('Calendar', calendar_menu, classnames='icon icon-date', order=200)
 
 
 class EventTypeAdmin(ModelAdmin):
@@ -76,8 +87,8 @@ class EventTypeAdmin(ModelAdmin):
 
 class EventAdmin(ModelAdmin):
     model = Event
-    menu_label = 'Events'
-    menu_icon = 'date'
+    menu_label = 'Events (List)'
+    menu_icon = 'list-ul'
     order = 100
 
     def is_shown(self, request):
