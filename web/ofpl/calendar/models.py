@@ -241,3 +241,12 @@ def create_event(
     end_time = end_time or (start_time + calendar_settings.DEFAULT_OCCURRENCE_DURATION)
     event.add_occurrences(start_time, end_time, **rrule_params)
     return event
+
+
+def get_events_for_user(user):
+    """
+    Return a queryset of event objects that this user is allowed to access
+    """
+    editable_events = UserPagePermissionsProxy(user)
+
+    return editable_events
