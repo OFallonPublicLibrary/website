@@ -10,12 +10,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, FieldRowPanel
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 
 from .conf import calendar_settings as calendar_settings
-
+from ..cms.models import Skinable
 
 class EventType(models.Model):
     abbr = models.CharField(_('abbreviation'), max_length=4, unique=True)
@@ -38,7 +38,7 @@ class CalendarIndexPageSingleton(Page):
     ]
 
 
-class Event(Page):
+class Event(Page, Skinable):
     event_type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
     content = RichTextField()
 
@@ -50,6 +50,8 @@ class Event(Page):
         FieldPanel('title', classname='title full'),
         FieldPanel('event_type'),
         FieldPanel('content'),
+        FieldPanel('page_skin'),
+        InlinePanel('occurrences', label='Occurrences'),
     ]
 
     class Meta:
@@ -151,7 +153,14 @@ class Occurrence(models.Model):
     '''
     start_time = models.DateTimeField(_('start time'))
     end_time = models.DateTimeField(_('end time'))
-    event = ParentalKey(Event, verbose_name=_('event'), editable=False)
+    event = ParentalKey(Event, verbose_name=_('event'), editable=False, related_name='occurrences')
+
+    panels = [
+        FieldRowPanel([
+            FieldPanel('start_time'),
+            FieldPanel('end_time'),
+        ]),
+    ]
 
     objects = OccurrenceManager()
 
