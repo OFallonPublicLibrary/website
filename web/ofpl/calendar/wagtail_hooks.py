@@ -61,10 +61,19 @@ class EventTypeAdmin(ModelAdmin):
 
 
 
-#class EventAdmin(ModelAdmin):
-#    model = Event
-#    menu_label = 'Events'
-#    menu_icon = 'date'
+class EventAdmin(ModelAdmin):
+    model = Event
+    menu_label = 'Events'
+    menu_icon = 'date'
+
+    def register_me(self):
+        @hooks.register('register_calendar_menu_item')
+        def register_event_tag():
+            return self.get_menu_item()
+
+        @hooks.register('register_admin_urls')
+        def register_admin_urls():
+            return self.get_admin_urls_for_registration()
 
 
 #class GridMenuItem(MenuItem):
@@ -87,6 +96,6 @@ class EventTypeAdmin(ModelAdmin):
 
 
 EventTypeAdmin().register_me()
-
+EventAdmin().register_me()
 
 
