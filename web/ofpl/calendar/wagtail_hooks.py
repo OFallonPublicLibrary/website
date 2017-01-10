@@ -38,7 +38,7 @@ class CalendarMenuItem(SubmenuMenuItem):
 
 @hooks.register('register_admin_menu_item')
 def register_calendar_menu():
-    return CalendarMenuItem('Calendar', calendar_menu, classnames='icon icon-date', order=300)
+    return CalendarMenuItem('Calendar', calendar_menu, classnames='icon icon-date', order=200)
 
 
 class EventTypeAdmin(ModelAdmin):
