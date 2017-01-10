@@ -1,0 +1,14 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}Calendar{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% if user_can_add %}
+        {% include "wagtailadmin/shared/header.html" with title="Calendar" icon="date" add_link="calendar:add" add_text="Add Event Occurrences" search_url="calendar:index" %}
+    {% else %}
+        {% include "wagtailadmin/shared/header.html" with title="Calendar" icon="date" search_url="calendar:index" %}
+    {% endif %}
+{% endblock %}
