@@ -106,26 +106,28 @@ class EventAdmin(ModelAdmin):
             return self.get_admin_urls_for_registration()
 
 
-#class GridMenuItem(MenuItem):
-#    def is_show(self, request):
-#        return True
+class OccurrenceAdmin(ModelAdmin):
+    model = Occurrence
+    menu_label = 'Occurrences'
+    menu_icon = 'list-ul'
+    order = 400
 
+    def is_shown(self, request):
+        return True
 
-#class CalendarAdminGroup(ModelAdminGroup):
-#    menu_label = 'Calendar'
-#    menu_icon = 'date'
-#    menu_order = 200
-#    items = (
-#        EventTypeAdmin,
-#        EventAdmin,
-#        GridMenuItem('Grid View', reverse('calendar:index'),
-#            name='calendar', classnames='icon icon-date', order=700)
-#        )
+    def register_me(self):
+        @hooks.register('register_calendar_menu_item')
+        def register_event_tag():
+            return self.get_menu_item(order=self.order)
 
+        @hooks.register('register_admin_urls')
+        def register_admin_urls():
+            return self.get_admin_urls_for_registration()
 
 
 
 EventTypeAdmin().register_me()
 EventAdmin().register_me()
+OccurrenceAdmin().register_me()
 
-
+print(OccurrenceAdmin().get_admin_urls_for_registration())

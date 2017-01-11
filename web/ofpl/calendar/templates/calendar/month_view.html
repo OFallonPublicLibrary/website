@@ -49,7 +49,7 @@
             <ul>
               {% for item in items %}
               <li>
-                <a href="#">
+                <a href="{% url 'calendar_occurrence_modeladmin_edit' item.id %}">
                   <span class="event-times">{{ item.start_time|time }}</span> {{ item.title }}
                 </a>
               </li>

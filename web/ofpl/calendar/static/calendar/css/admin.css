@@ -25,3 +25,8 @@ table.calendar-grid td ul{
 table.calendar-grid td li:not(:last-child){
     border-bottom: 1px #ccc dotted;
 }
+
+section {
+    margin-top: 2em;
+    padding: 0 0 2em;
+}
