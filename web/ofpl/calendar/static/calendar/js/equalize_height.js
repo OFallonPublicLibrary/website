@@ -1,6 +1,6 @@
 var equalize_height = function(){
   var maxHeight = (function(){
-    var max = 0;
+    var max = $('table.calendar-grid td').width(); // at least a square
     $('table.calendar-grid td').each(function(index, element){
       var $elm = $(element);
       console.log($elm);
