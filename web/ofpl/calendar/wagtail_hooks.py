@@ -42,11 +42,20 @@ def register_permissions():
 class CalendarGridMenuItem(MenuItem):
     pass
 
-
 @hooks.register('register_calendar_menu_item')
 def register_calendar_grid_menu_item():
     return CalendarGridMenuItem(
         'Calendar Grid', reverse('calendar:index'), classnames='icon icon-date', order=100
+    )
+
+
+class CalendarBatchAddMenuItem(MenuItem):
+    pass
+
+@hooks.register('register_calendar_menu_item')
+def register_calendar_grid_menu_item():
+    return CalendarBatchAddMenuItem(
+        'Batch Add', reverse('calendar:batchadd'), classnames='icon icon-plus', order=300
     )
 
 

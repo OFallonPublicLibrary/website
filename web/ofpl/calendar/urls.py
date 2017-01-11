@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^(?P<year>\d+)/(?P<month>\d+)/$', views.index, name='index'),
     url(r'^add/$', views.add, name='add'),
     url(r'^add/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/$', views.add, name='add'),
-    url(r'^batchadd/$', views.batch_add, name='batch_add'),
+    url(r'^batchadd/$', views.batch_add, name='batchadd'),
 ]
