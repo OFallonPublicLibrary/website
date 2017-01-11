@@ -15,6 +15,7 @@ from .models import Event, Occurrence, EventType
 from .permissions import permission_policy
 from .conf import settings as calendar_settings
 from .forms import SingleOccurrenceForm
+from .batch_form import MultipleOccurrenceForm
 from . import utils
 
 from dateutil import parser
@@ -113,3 +114,26 @@ def add(request, year=TODAY.year, month=TODAY.month, day=TODAY.day):
     return render(request, "calendar/add.html", {
         'form': form
     })
+
+
+def batch_add(request, template='calendar/batch_add.html'):
+    dtstart = None
+    if request.method == 'POST':
+        form = MultipleOccurrenceForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, "Event occurrence batch added")
+            return redirect('calendar:index')
+        else:
+            messages.error(request, "The occurrence batch could not be created due to errors.")
+
+    else:
+        dtstart = datetime.now()
+        form = MultipleOccurrenceForm(initial={'dtstart': dtstart})
+
+    return render(
+        request,
+        template,
+        {'dtstart': dtstart, 'form': form}
+    )
