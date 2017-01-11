@@ -14,7 +14,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, FieldRow
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 
-from .conf import calendar_settings as calendar_settings
+from .conf import settings as calendar_settings
 from ..cms.models import Skinable
 
 class EventType(models.Model):

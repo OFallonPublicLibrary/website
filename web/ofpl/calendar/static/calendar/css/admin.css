@@ -1,3 +1,27 @@
 .float-right{
     float: right;
 }
+
+.text-center{
+    text-align: center;
+}
+
+table.calendar-grid{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.calendar-grid td{
+    width: 14.25%;
+    border: 1px solid #ccc;
+    vertical-align: top;
+}
+
+table.calendar-grid td ul{
+    padding: 0;
+    list-style: none;
+}
+
+table.calendar-grid td li:not(:last-child){
+    border-bottom: 1px #ccc dotted;
+}

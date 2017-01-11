@@ -1,0 +1,68 @@
+{% extends "wagtailadmin/base.html" %}
+{% load staticfiles %}
+
+{% block titletag %}Calendar{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script src="{% static 'calendar/js/equalize_height.js' %}"></script>  
+{% endblock %}
+
+{% block extra_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'calendar/css/admin.css' %}" type="text/css" />
+{% endblock %}
+
+
+{% block content %}
+  {% if user_can_add %}
+      {% include "wagtailadmin/shared/header.html" with title="Calendar" icon="date" add_link="calendar:add" add_text="Add Event Occurrences" search_url="calendar:index" %}
+  {% else %}
+      {% include "wagtailadmin/shared/header.html" with title="Calendar" icon="date" search_url="calendar:index" %}
+  {% endif %}
+
+  <div class="nice-padding">
+    <div class="">
+      <a class="button text-replace icon icon-arrow-left" href="{% url 'calendar:index' last_month.year last_month.month %}"></a>
+      <a class="button text-replace icon icon-arrow-right float-right" href="{% url 'calendar:index' next_month.year next_month.month %}"></a>
+    </div>
+    <div class="">
+      <h2 class="text-center">{{ monthyear_heading }}</h2>
+    </div>
+
+    <table class="calendar-grid">
+      <thead>
+        <tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in calendar %}
+        <tr>
+          {% for day,items in row %}
+          <td{% ifequal day today.day %} class="today"{% endifequal %}>
+          {% if day %}
+            <div class="day-ordinal">
+                <a href="#">{{ day }}</a>
+            </div>
+            {% if items %}
+            <ul>
+              {% for item in items %}
+              <li>
+                <a href="#">
+                  <span class="event-times">{{ item.start_time|time }}</span> {{ item.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>  
+            {% endif %}
+          {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+
+  </div>
+{% endblock %}
