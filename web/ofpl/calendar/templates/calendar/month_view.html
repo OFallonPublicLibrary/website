@@ -45,6 +45,7 @@
             <div class="day-ordinal">
                 <a href="#">{{ day }}</a>
             </div>
+            <div class="event-list">
             {% if items %}
             <ul>
               {% for item in items %}
@@ -54,8 +55,16 @@
                 </a>
               </li>
               {% endfor %}
-            </ul>  
+            </ul>
             {% endif %}
+            </div>
+
+            {% if user_can_add %}
+            <div class="text-center add-button">
+              <a href="{% url 'calendar:add' this_month.year this_month.month day %}" class="button button-small yes">Add</a>
+            </div>
+            {% endif %}
+
           {% endif %}
           </td>
           {% endfor %}

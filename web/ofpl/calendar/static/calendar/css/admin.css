@@ -26,6 +26,16 @@ table.calendar-grid td li:not(:last-child){
     border-bottom: 1px #ccc dotted;
 }
 
+.calendar-grid .event-list{
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.calendar-grid .add-button{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
 section {
     margin-top: 2em;
     padding: 0 0 2em;

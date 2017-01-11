@@ -126,4 +126,4 @@ EventTypeAdmin().register_me()
 EventAdmin().register_me()
 OccurrenceAdmin().register_me()
 
-print(OccurrenceAdmin().get_admin_urls_for_registration())
+print(EventAdmin().get_admin_urls_for_registration())

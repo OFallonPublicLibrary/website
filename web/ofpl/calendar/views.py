@@ -6,6 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
+from django.core.urlresolvers import reverse
 
 from wagtail.wagtailadmin import messages
 from wagtail.wagtailcore.models import Page
@@ -13,6 +14,7 @@ from wagtail.wagtailcore.models import Page
 from .models import Event, Occurrence, EventType
 from .permissions import permission_policy
 from .conf import settings as calendar_settings
+from .forms import SingleOccurrenceForm
 from . import utils
 
 from dateutil import parser
@@ -20,6 +22,8 @@ from dateutil import parser
 
 if calendar_settings.CALENDAR_FIRST_WEEKDAY is not None:
     calendar.setfirstweekday(calendar_settings.CALENDAR_FIRST_WEEKDAY)
+
+TODAY = datetime.now()
 
 
 def month_view(request, year, month, template='calendar/month_view.html', queryset=None):
@@ -43,6 +47,7 @@ def month_view(request, year, month, template='calendar/month_view.html', querys
         'next_month': dtstart + timedelta(days=+last_day),
         'last_month': dtstart + timedelta(days=-1),
         'monthyear_heading': dtstart.strftime('%B | %Y'),
+        'user_can_add': permission_policy['occurrence'].user_has_permission(request.user, 'add'),
     }
 
     return render(request, template, data)
@@ -86,5 +91,25 @@ def index(request, year=None, month=None):
         'user_can_add': permission_policy['occurrence'].user_has_permission(request.user, 'add'),
     })
 
-def add(request):
-    pass
+def add(request, year=TODAY.year, month=TODAY.month, day=TODAY.day):
+    if request.method == 'POST':
+        form = SingleOccurrenceForm(request.POST, request.FILES)
+        if form.is_valid():
+            theoccurrence = form.save()
+
+            messages.success(request, "Event occurrence added", buttons=[
+                messages.button(reverse('calendar_occurrence_modeladmin_edit', args=(theoccurrence.id,)), 'Edit')
+            ])
+            return redirect('calendar:index')
+        else:
+            messages.error(request, "The occurrence could not be created due to errors.")
+    else:
+        year,month,day = int(year),int(month),int(day)
+        stobj = datetime(year, month, day, TODAY.hour)
+        endobj = datetime(year, month, day, TODAY.hour+1)
+        initial = {'start_time':stobj, 'end_time':endobj}
+        form = SingleOccurrenceForm(initial=initial)
+
+    return render(request, "calendar/add.html", {
+        'form': form
+    })

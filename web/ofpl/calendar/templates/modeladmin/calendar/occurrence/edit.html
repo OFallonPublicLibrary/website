@@ -11,8 +11,8 @@
 {% block header %}
   {{ block.super }}
   <section class="nice-padding">
-    <a href="#" class="button icon icon-doc-empty-inverse bicolor">Edit Parent Event Page</a>
-    <a href="#" class="button no icon icon-bin bicolor">Delete This Occurrence</a>
+    <a href="{% url 'calendar_event_modeladmin_edit' view.instance.event_id %}" class="button icon icon-doc-empty-inverse bicolor">Edit Parent Event Page</a>
+    <a href="{% url 'calendar_occurrence_modeladmin_delete' view.instance_pk %}" class="button no icon icon-bin bicolor">Delete This Occurrence</a>
   </section>
 {% endblock %}
 

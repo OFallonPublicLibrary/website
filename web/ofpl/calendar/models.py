@@ -153,13 +153,12 @@ class Occurrence(models.Model):
     '''
     start_time = models.DateTimeField(_('start time'))
     end_time = models.DateTimeField(_('end time'))
-    event = ParentalKey(Event, verbose_name=_('event'), editable=False, related_name='occurrences')
+    event = ParentalKey(Event, verbose_name=_('event'), related_name='occurrences')
 
     panels = [
-        FieldRowPanel([
-            FieldPanel('start_time'),
-            FieldPanel('end_time'),
-        ]),
+        FieldPanel('event'),
+        FieldPanel('start_time'),
+        FieldPanel('end_time'),
     ]
 
     objects = OccurrenceManager()

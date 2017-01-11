@@ -1,7 +1,7 @@
 var equalize_height = function(){
   var maxHeight = (function(){
-    var max = $('table.calendar-grid td').width(); // at least a square
-    $('table.calendar-grid td').each(function(index, element){
+    var max = $('table.calendar-grid td').width()/2; // at least half a square
+    $('table.calendar-grid td .event-list').each(function(index, element){
       var $elm = $(element);
       console.log($elm);
       var height = $elm.height();
@@ -13,7 +13,7 @@ var equalize_height = function(){
     return max;
   })();
 
-  $('table.calendar-grid td').css('height', maxHeight + 'px');
+  $('table.calendar-grid td .event-list').css('height', maxHeight + 'px');
 }
 
 
