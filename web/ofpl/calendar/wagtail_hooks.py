@@ -116,10 +116,6 @@ class OccurrenceAdmin(ModelAdmin):
         return True
 
     def register_me(self):
-        @hooks.register('register_calendar_menu_item')
-        def register_event_tag():
-            return self.get_menu_item(order=self.order)
-
         @hooks.register('register_admin_urls')
         def register_admin_urls():
             return self.get_admin_urls_for_registration()
