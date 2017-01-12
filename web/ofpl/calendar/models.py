@@ -40,11 +40,14 @@ class EventRootSingleton(RoutablePageMixin, Page):
     ]
 
 
-class CalendarGridPage(RoutablePageMixin, Page):
+class CalendarGridPage(RoutablePageMixin, Page, Skinable):
     content = RichTextField()
+    event_types = models.ManyToManyField(EventType)
 
     content_panels = [
         FieldPanel('title', classname='full title'),
+        FieldPanel('page_skin'),
+        FieldPanel('event_types'),
         FieldPanel('content'),
     ]
 
