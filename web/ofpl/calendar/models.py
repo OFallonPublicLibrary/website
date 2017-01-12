@@ -39,6 +39,15 @@ class CalendarIndexPageSingleton(RoutablePageMixin, Page):
         FieldPanel('content'),
     ]
 
+
+class CalendarGridPage(RoutablePageMixin, Page):
+    content = RichTextField()
+
+    content_panels = [
+        FieldPanel('title', classname='full title'),
+        FieldPanel('content'),
+    ]
+
     @route(r'^$')
     def this_month(self, request):
         dt = datetime.now()
