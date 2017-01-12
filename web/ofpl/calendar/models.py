@@ -44,7 +44,7 @@ class CalendarIndexPageSingleton(RoutablePageMixin, Page):
         dt = datetime.now()
         return public_views.month_view(self, request, dt.year, dt.month)
 
-    @route(r'^(\d+)/(\d+)/$')
+    @route(r'^(\d+)/(\d+)/$', name='public_calendar')
     def other_month(self, request, year=None, month=None):
         return public_views.month_view(self, request, year, month)
 

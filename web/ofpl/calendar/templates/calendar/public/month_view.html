@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles wagtailroutablepage_tags %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script src="{% static 'calendar/js/equalize_height.js' %}"></script>  
+{% endblock %}
+
+{% block extra_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'calendar/css/admin.css' %}" type="text/css" />
+{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+  <div class="small-12 columns">
+
+    <a class="button" href="{% routablepageurl page 'public_calendar' last_month.year last_month.month %}">Previous</a>
+    <a class="button float-right" href="{% routablepageurl page 'public_calendar' next_month.year next_month.month %}">Next</a>
+
+    <div class="">
+      <h2 class="text-center">{{ monthyear_heading }}</h2>
+    </div>
+
+    <table class="calendar-grid">
+      <thead>
+        <tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in calendar %}
+        <tr>
+          {% for day,items in row %}
+
+          {% if day %}
+          <td{% ifequal day today.day %} class="today"{% endifequal %}>
+            <div class="day-ordinal">
+                <a href="#">{{ day }}</a>
+            </div>
+            <div class="event-list">
+            {% if items %}
+            <ul>
+              {% for item in items %}
+              <li>
+                <a href="{% url 'calendar_occurrence_modeladmin_edit' item.id %}">
+                  <span class="event-times">{{ item.start_time|time }}</span> {{ item.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            </div>
+
+
+          </td>
+          {% else %}
+          <td>&nbsp;</td>
+          {% endif %}
+
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+
+  </div>
+
+  </div><!-- column -->
+  </div><!-- row -->
+{% endblock %}
