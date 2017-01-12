@@ -41,11 +41,12 @@ class CalendarIndexPageSingleton(RoutablePageMixin, Page):
 
     @route(r'^$')
     def this_month(self, request):
-        return public_views.this_month(self, request)
+        dt = datetime.now()
+        return public_views.month_view(self, request, dt.year, dt.month)
 
     @route(r'^(\d+)/(\d+)/$')
     def other_month(self, request, year=None, month=None):
-        return public_views.other_month(self, request, year, month)
+        return public_views.month_view(self, request, year, month)
 
 
 class Event(Page, Skinable):

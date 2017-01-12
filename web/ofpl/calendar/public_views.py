@@ -9,8 +9,9 @@ from django.http import HttpResponse
 from .conf import settings as calendar_settings
 
 
-def this_month(self, request):
-    return HttpResponse("Current Month")
-
-def other_month(self, request, year, month):
-    return HttpResponse("Different month " + year + " | " + month)
+def month_view(self, request, year, month):
+    year, month = int(year), int(month)
+    return render('calendar/public/month_view.html', {
+        'year': year,
+        'month': month,
+    })
