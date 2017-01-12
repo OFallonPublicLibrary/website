@@ -17,6 +17,7 @@ from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from .conf import settings as calendar_settings
 from ..cms.models import Skinable
+from . import public_views
 
 class EventType(models.Model):
     abbr = models.CharField(_('abbreviation'), max_length=4, unique=True)
@@ -37,6 +38,14 @@ class CalendarIndexPageSingleton(RoutablePageMixin, Page):
         FieldPanel('title', classname='full title'),
         FieldPanel('content'),
     ]
+
+    @route(r'^$')
+    def this_month(self, request):
+        return public_views.this_month(self, request)
+
+    @route(r'^(\d+)/(\d+)/$')
+    def other_month(self, request, year=None, month=None):
+        return public_views.other_month(self, request, year, month)
 
 
 class Event(Page, Skinable):
