@@ -7,6 +7,7 @@
 {% block content %}
   <div class="row">
   <div class="small-12 columns">
+
   <div class="row">
     <div class="medium-12">
       <div class="main-carousel">
@@ -28,6 +29,30 @@
       </div>
     </div>
   </div>
+
+  <!-- bottom columns here -->
+  <div class="row">
+    <div class="medium-6 large-4 columns">
+      {{ page.left_column|richtext }}
+    </div>
+    <div class="medium-6 large-4 columns bdr">
+      {{ page.center_column|richtext }}
+    </div>
+    <div class="large-4 columns bdr">
+      <h3>Events</h3>
+      <hr class="hide-for-large-up">
+      <div class="row">
+        <div class="small-12 medium-6 large-12 columns">
+          <div id="datepicker"></div><p><a href="#">Full Calendar</a></p>
+        </div>
+        <div class="small-12 medium-6 large-12 columns">
+          <h4 id="eventDate"></h4>
+          <div id="eventContainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </div>
   </div>
 {% endblock %}
