@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 from wagtail.wagtailadmin import messages
 from wagtail.wagtailcore.models import Page
@@ -24,7 +25,7 @@ from dateutil import parser
 if calendar_settings.CALENDAR_FIRST_WEEKDAY is not None:
     calendar.setfirstweekday(calendar_settings.CALENDAR_FIRST_WEEKDAY)
 
-TODAY = datetime.now()
+TODAY = timezone.now()
 
 
 def month_view(request, year, month, template='calendar/month_view.html', queryset=None):
@@ -42,7 +43,7 @@ def month_view(request, year, month, template='calendar/month_view.html', querys
 
     by_day = dict([(dt, list(o)) for dt,o in itertools.groupby(occurrences, start_day)])
     data = {
-        'today': datetime.now(),
+        'today': timezone.now(),
         'calendar': [[(d, by_day.get(d, [])) for d in row] for row in cal],
         'this_month': dtstart,
         'next_month': dtstart + timedelta(days=+last_day),
@@ -55,7 +56,7 @@ def month_view(request, year, month, template='calendar/month_view.html', querys
 
 
 def index(request, year=None, month=None):
-    dt = datetime.now()
+    dt = timezone.now()
 
     if(year == None and month == None):
         year = int(year or dt.year)
@@ -129,7 +130,7 @@ def batch_add(request, template='calendar/batch_add.html'):
             messages.error(request, "The occurrence batch could not be created due to errors.")
 
     else:
-        dtstart = datetime.now()
+        dtstart = timezone.now()
         form = MultipleOccurrenceForm(initial={'dtstart': dtstart})
 
     return render(

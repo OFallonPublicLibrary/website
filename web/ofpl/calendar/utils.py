@@ -6,6 +6,7 @@ import itertools
 from django.db.models.query import QuerySet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils import timezone
 
 from dateutil import rrule
 from .conf import settings as swingtime_settings
@@ -137,7 +138,7 @@ def create_timeslot_table(
 
     '''
     from swingtime.models import Occurrence
-    dt = dt or datetime.now()
+    dt = dt or timezone.now()
     start_time = start_time.replace(tzinfo=dt.tzinfo) if not start_time.tzinfo else start_time
     dtstart = datetime.combine(dt.date(), start_time)
     dtend = dtstart + end_time_delta
