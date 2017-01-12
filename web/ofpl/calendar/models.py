@@ -63,6 +63,10 @@ class CalendarGridPage(RoutablePageMixin, Page, Skinable):
 class Event(Page, Skinable):
     event_type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
     content = RichTextField()
+    what = RichTextField(default=content)
+    when = RichTextField(default=content)
+    where = RichTextField(default=content)
+    who = RichTextField(default=content)
 
     parent_page_types = [
         EventRootSingleton
@@ -71,6 +75,10 @@ class Event(Page, Skinable):
     content_panels = [
         FieldPanel('title', classname='title full'),
         FieldPanel('event_type'),
+        FieldPanel('what'),
+        FieldPanel('when'),
+        FieldPanel('where'),
+        FieldPanel('who'),
         FieldPanel('content'),
         FieldPanel('page_skin'),
         InlinePanel('occurrences', label='Occurrences'),
