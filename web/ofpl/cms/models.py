@@ -162,8 +162,12 @@ class HomePageCarouselItem(Orderable, CarouselItem):
 
 
 class HomePage(Page, Skinable):
+    left_column = RichTextField()
+    center_column = RichTextField()
 
     content_panels = Page.content_panels + [
+        FieldPanel('left_column'),
+        FieldPanel('center_column'),
         InlinePanel('carousel_items', label="Carousel Items"),
         FieldPanel('page_skin'),
     ]
