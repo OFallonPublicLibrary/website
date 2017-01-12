@@ -13,6 +13,7 @@ from django.conf import settings
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, FieldRowPanel
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from .conf import settings as calendar_settings
 from ..cms.models import Skinable
@@ -29,7 +30,7 @@ class EventType(models.Model):
         return self.label
 
 
-class CalendarIndexPageSingleton(Page):
+class CalendarIndexPageSingleton(RoutablePageMixin, Page):
     content = RichTextField()
 
     content_panels = [

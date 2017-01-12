@@ -134,5 +134,3 @@ class OccurrenceAdmin(ModelAdmin):
 EventTypeAdmin().register_me()
 EventAdmin().register_me()
 OccurrenceAdmin().register_me()
-
-print(EventAdmin().get_admin_urls_for_registration())
