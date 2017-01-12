@@ -39,7 +39,8 @@ def month_view(request, year, month, template='calendar/month_view.html', querys
     occurrences = queryset.filter(start_time__year=year, start_time__month=month)
 
     def start_day(o):
-        return o.start_time.day
+        tz_adjusted = timezone.get_current_timezone().normalize(o.start_time)
+        return tz_adjusted.day
 
     by_day = dict([(dt, list(o)) for dt,o in itertools.groupby(occurrences, start_day)])
     data = {
