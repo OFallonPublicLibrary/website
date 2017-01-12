@@ -31,7 +31,7 @@ class EventType(models.Model):
         return self.label
 
 
-class CalendarIndexPageSingleton(RoutablePageMixin, Page):
+class EventRootSingleton(RoutablePageMixin, Page):
     content = RichTextField()
 
     content_panels = [
@@ -63,7 +63,7 @@ class Event(Page, Skinable):
     content = RichTextField()
 
     parent_page_types = [
-        CalendarIndexPageSingleton
+        EventRootSingleton
     ]
 
     content_panels = [
