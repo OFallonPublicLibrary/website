@@ -174,10 +174,19 @@ class Occurrence(models.Model):
     '''
     start_time = models.DateTimeField(_('start time'))
     end_time = models.DateTimeField(_('end time'))
+    display_name_override = models.CharField(max_length=255, blank=True)
     event = ParentalKey(Event, verbose_name=_('event'), related_name='occurrences')
+
+    @property
+    def display_name(self):
+        if self.display_name_override == "":
+            return self.event.title
+        else:
+            return self.display_name_override
 
     panels = [
         FieldPanel('event'),
+        FieldPanel('display_name_override'),
         FieldPanel('start_time'),
         FieldPanel('end_time'),
     ]
