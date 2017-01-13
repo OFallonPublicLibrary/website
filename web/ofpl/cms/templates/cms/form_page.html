@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags subnav_tags %}
+
+{% block content %}
+  <div class="row">
+
+  
+    <div class="medium-9 large-10 medium-push-3 large-push-2 columns">
+
+      <a id="mainContent"></a>
+      <h2 id="title">{{ page.title }}</h2>
+      {% include 'includes/breadcrumbs.html' %}
+
+      <!-- if calendar then put key here -->
+      <div id="content">
+        {{ page.intro|richtext }}
+        <form action="{% pageurl page %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="Submit" value="Submit">
+        </form>
+      </div><!-- /#content -->
+
+    </div><!-- end column -->
+
+
+    <div class="medium-3 large-2 medium-pull-9 large-pull-10 columns">
+
+      <div class="row">
+        <div class="small-12 columns panel">
+          {% subnav %}
+        </div><!-- column -->
+      </div><!-- row -->
+
+    </div><!-- column -->
+
+
+  </div><!-- row -->
+{% endblock%}
