@@ -118,13 +118,13 @@ span.srchbx_down{
 	
 }
 span.srchbx_up{
-	background-image:url(#{$root_url}images/up.png);
+	background-image:url(#{$root_url}static/images/up.png);
 }
 span.srchbx_down{
-	background-image:url(#{$root_url}images/down.png);
+	background-image:url(#{$root_url}static/images/down.png);
 }
 input.srchbx_search{
-	background:#f2f2f2 url(#{$root_url}images/search.png) no-repeat center center;
+	background:#f2f2f2 url(#{$root_url}static/images/search.png) no-repeat center center;
 	height:43px;
 	width:50px;
 	float:left;
