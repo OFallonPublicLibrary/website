@@ -148,7 +148,7 @@ class MultipleIntegerField(forms.MultipleChoiceField):
 
 class MultipleOccurrenceForm(forms.Form):
     event = forms.ModelChoiceField(Event.objects)
-    display_name_override = forms.CharField()
+    display_name_override = forms.CharField(required=False)
 
     day = forms.DateField(
         label=_('Date'),
