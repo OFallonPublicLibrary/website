@@ -184,7 +184,7 @@ class Occurrence(models.Model):
     object.
     '''
     start_time = models.DateTimeField(_('start time'))
-    end_time = models.DateTimeField(_('end time'))
+    end_time = models.DateTimeField(_('end time'), null=True, blank=True)
     all_day = models.BooleanField(default=False)
     display_name_override = models.CharField(max_length=255, blank=True)
     event = ParentalKey(Event, verbose_name=_('event'), related_name='occurrences')

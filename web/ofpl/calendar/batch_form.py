@@ -149,7 +149,7 @@ class MultipleIntegerField(forms.MultipleChoiceField):
 class MultipleOccurrenceForm(forms.Form):
     event = forms.ModelChoiceField(Event.objects)
     display_name_override = forms.CharField(required=False)
-    all_day = forms.BooleanField()
+    all_day = forms.BooleanField(required=False)
 
     day = forms.DateField(
         label=_('Date'),
@@ -164,7 +164,8 @@ class MultipleOccurrenceForm(forms.Form):
 
     end_time_delta = forms.IntegerField(
         label=_('End time'),
-        widget=forms.Select(choices=default_timeslot_offset_options)
+        widget=forms.Select(choices=default_timeslot_offset_options),
+        required=False,
     )
 
     # recurrence options
@@ -285,6 +286,7 @@ class MultipleOccurrenceForm(forms.Form):
             self.cleaned_data['start_time'],
             self.cleaned_data['end_time'],
             self.cleaned_data['display_name_override'],
+            self.cleaned_data['all_day'],
             **params
         )
 
