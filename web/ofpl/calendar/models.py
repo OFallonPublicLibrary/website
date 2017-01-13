@@ -185,6 +185,7 @@ class Occurrence(models.Model):
     '''
     start_time = models.DateTimeField(_('start time'))
     end_time = models.DateTimeField(_('end time'))
+    all_day = models.BooleanField(default=False)
     display_name_override = models.CharField(max_length=255, blank=True)
     event = ParentalKey(Event, verbose_name=_('event'), related_name='occurrences')
 
@@ -198,6 +199,7 @@ class Occurrence(models.Model):
     panels = [
         FieldPanel('event'),
         FieldPanel('display_name_override'),
+        FieldPanel('all_day'),
         FieldPanel('start_time'),
         FieldPanel('end_time'),
     ]

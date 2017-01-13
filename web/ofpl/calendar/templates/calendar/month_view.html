@@ -51,7 +51,18 @@
               {% for item in items %}
               <li>
                 <a href="{% url 'calendar_occurrence_modeladmin_edit' item.id %}">
-                  <span class="event-times">{{ item.start_time|time }}</span> {{ item.display_name }}
+
+                  <span class="event-times">
+                  {% if item.all_day %}
+                    {# Show nothing #}
+                  {% elif item.end_time %}
+                    {{ item.start_time|time }} - {{ item.end_time|time }}
+                  {% else %}
+                    {{ item.start_time|time }}
+                  {% endif %}
+                  </span>
+
+                  {{ item.display_name }}
                 </a>
               </li>
               {% endfor %}
