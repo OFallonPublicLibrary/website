@@ -56,7 +56,7 @@ class SingleOccurrenceForm(forms.ModelForm):
 
     class Meta:
         model = Occurrence
-        fields = ('event', 'start_time', 'end_time')
+        fields = ('event', 'display_name_override', 'start_time', 'end_time')
         widgets = {
             'start_time': AdminDateTimeInput,
             'end_time': AdminDateTimeInput,
