@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <div class="row">
+
+  
+    <div class="small-12 columns">
+
+      <a id="mainContent"></a>
+      <h2 id="title">{{ page.title }}</h2>
+      {% include 'includes/breadcrumbs.html' %}
+
+      <!-- if calendar then put key here -->
+      <div id="content">
+        {{ page.content|richtext }}
+      </div><!-- /#content -->
+
+    </div><!-- end column -->
+
+  </div><!-- row -->
+{% endblock%}
