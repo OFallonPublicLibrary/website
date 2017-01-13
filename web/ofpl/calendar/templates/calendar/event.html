@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <div class="row">
+
+  
+    <div class="medium-9 large-10 medium-push-3 large-push-2 columns">
+
+      <a id="mainContent"></a>
+      <h2 id="title">{{ page.title }}</h2>
+      {% include 'includes/breadcrumbs.html' %}
+
+      <!-- if calendar then put key here -->
+      <div id="content">
+        <h4>What</h4>
+        {{ self.what|richtext }}
+        <h4>Where</h4>
+        {{ self.where|richtext }}
+        <h4>When</h4>
+        {{ self.when|richtext }}
+        <h4>Who</h4>
+        {{ self.who|richtext }}
+
+        {% if self.registration_link %}
+          <a href='{{ self.registration_link }}'>Register Here</a>
+        {% endif %}
+      </div><!-- /#content -->
+
+    </div><!-- end column -->
+
+
+    <div class="medium-3 large-2 medium-pull-9 large-pull-10 columns">
+
+      <div class="row">
+        <div class="small-12 columns panel">
+          <h3>Today's Events</h3>
+          Coming Soon
+          <!--<ul class="side-nav">
+            <li><a href="#">Subnav goes here</a></li>
+          </ul>-->
+        </div><!-- column -->
+      </div><!-- row -->
+
+    </div><!-- column -->
+
+
+  </div><!-- row -->
+{% endblock%}
