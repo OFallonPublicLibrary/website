@@ -16,8 +16,11 @@
   <div class="row">
   <div class="small-12 columns">
 
-    <a class="button" href="{% routablepageurl page 'public_calendar' last_month.year last_month.month %}">Previous</a>
-    <a class="button float-right" href="{% routablepageurl page 'public_calendar' next_month.year next_month.month %}">Next</a>
+    <br><br>
+    <p>
+    <a class="" href="{% routablepageurl page 'public_calendar' last_month.year last_month.month %}">&lt;&lt; Previous</a>
+    <a class="float-right" href="{% routablepageurl page 'public_calendar' next_month.year next_month.month %}">Next &gt;&gt;</a>
+    </p>
 
     <div class="">
       <h2 class="text-center">{{ monthyear_heading }}</h2>
