@@ -13,14 +13,27 @@
 
       <!-- if calendar then put key here -->
       <div id="content">
-        <h4>What</h4>
-        {{ self.what|richtext }}
-        <h4>Where</h4>
-        {{ self.where|richtext }}
+        {% if self.what != "       " %}
+          <h4>What</h4>
+          {{ self.what|richtext }}
+        {% endif %}
+
+        {% if self.what != "       " %}
+          <h4>Where</h4>
+          {{ self.where|richtext }}
+        {% endif %}
+
         <h4>When</h4>
-        {{ self.when|richtext }}
-        <h4>Who</h4>
-        {{ self.who|richtext }}
+        {% if self.what != "       " %}
+          {{ self.when|richtext }}
+        {% endif %}
+
+        <p>TODO add date list</p>
+
+        {% if self.what != "       " %}
+          <h4>Who</h4>
+          {{ self.who|richtext }}
+        {% endif %}
 
         {% if self.registration_link %}
           <a href='{{ self.registration_link }}'>Register Here</a>
