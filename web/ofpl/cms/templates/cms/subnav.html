@@ -1,0 +1,7 @@
+<ul class="side-nav">
+<h3>{{ heading }}</h3>
+{% for x in siblings %}
+  <li><a href="{{ x.url }}">{{ x.title }}</a></li>
+{% endfor %}
+</ul>
+
