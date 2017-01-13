@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags staticfiles %}
 
 {% block content %}
   <div class="row">
@@ -36,7 +36,7 @@
         {% endif %}
 
         {% if self.registration_link %}
-          <a href='{{ self.registration_link }}'>Register Here</a>
+          <a href='{{ self.registration_link }}'><img src="{% static 'images/register.png' %}" alt="Register"></a>
         {% endif %}
       </div><!-- /#content -->
 
