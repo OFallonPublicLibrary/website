@@ -8,16 +8,17 @@ register = Library()
 def subnav(context):
     print(vars(context['page']))
     page = context['page']
+    depth = page.depth
     asdf = page.get_ancestors()
     if page.depth == 4:
         return {
             'heading': asdf[len(asdf)-1].title,
             'page': page,
-            'siblings': Page.objects.descendant_of(asdf[len(asdf)-1])
+            'siblings': Page.objects.descendant_of(asdf[len(asdf)-1]).exclude(depth__gt=depth+1)
         }
     else:
         return {
             'heading': page.title,
             'page': page,
-            'siblings': Page.objects.descendant_of(page)
+            'siblings': Page.objects.descendant_of(page).filter(depth=depth+1)
         }
