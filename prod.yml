@@ -5,12 +5,14 @@ services:
     container_name: ofpl-db
     volumes:
       - "db-data:/var/lib/postgresql/data"
+    restart: always
   es:
     image: elasticsearch
     volumes:
       - "es-data:/usr/share/elasticsearch/data"
     expose:
       - "9200"
+    restart: always
   web:
     build:
       context: ./web
@@ -28,6 +30,7 @@ services:
       - es
     ports:
       - "8000:8000"
+    restart: always
   nginx:
     image: nginx:latest
     ports:
@@ -38,9 +41,8 @@ services:
       - ./media:/media
     depends_on:
       - web
+    restart: always
 
 volumes:
   db-data:
   es-data:
-
-restart: always
