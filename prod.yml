@@ -42,3 +42,5 @@ services:
 volumes:
   db-data:
   es-data:
+
+restart: always
