@@ -298,8 +298,6 @@ class EventStreamPage(Page, Skinable):
 
     @property
     def upcoming_events(self):
-        asdf = Occurrence.objects.select_related('event').exclude(start_time__gt=datetime.now()+timedelta(90))
-        for x in asdf:
-            print(x)
+        asdf = Occurrence.objects.select_related('event').exclude(start_time__gt=datetime.now()+timedelta(90)).filter(event__type=self.type)
         return asdf
 
