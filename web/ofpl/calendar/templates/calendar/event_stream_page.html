@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <div class="row">
+
+  
+    <div class="small-12 columns">
+
+      <a id="mainContent"></a>
+      <h2 id="title">{{ page.title }}</h2>
+      {% include 'includes/breadcrumbs.html' %}
+
+      <!-- if calendar then put key here -->
+      <div id="content">
+        {{ page.content|richtext }}
+
+        <hr>
+
+        <div id="eventContainer">
+          {% for x in page.upcoming_events %}
+          <div>
+            <h5>
+              <small>{{ x.start_time }}</small> <a href="{{x.event.url}}">{{x.display_name}}</a>
+            </h5>
+          </div>
+          {% endfor %}
+        </div>
+      </div><!-- /#content -->
+
+    </div><!-- end column -->
+
+  </div><!-- row -->
+{% endblock%}

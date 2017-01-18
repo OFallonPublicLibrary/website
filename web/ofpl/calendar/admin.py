@@ -11,8 +11,8 @@ class OccurrenceInline(admin.TabularInline):
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'event_type', 'content')
-    list_filter = ('event_type', )
+    list_display = ('title', 'type', 'content')
+    list_filter = ('type', )
     search_fields = ('title', 'content')
     inlines = [OccurrenceInline]
 

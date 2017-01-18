@@ -61,7 +61,7 @@ class CalendarGridPage(RoutablePageMixin, Page, Skinable):
 
 
 class Event(Page, Skinable):
-    event_type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
+    type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
     what = RichTextField()
     when = RichTextField()
     where = RichTextField()
@@ -75,7 +75,7 @@ class Event(Page, Skinable):
 
     content_panels = [
         FieldPanel('title', classname='title full'),
-        FieldPanel('event_type'),
+        FieldPanel('type'),
         FieldPanel('what'),
         FieldPanel('when'),
         FieldPanel('where'),
@@ -222,8 +222,8 @@ class Occurrence(models.Model):
         return self.event.title
 
     @property
-    def event_type(self):
-        return self.event.event_type
+    def type(self):
+        return self.event.type
 
 
 
@@ -231,7 +231,7 @@ class Occurrence(models.Model):
 
 def create_event(
     title,
-    event_type,
+    type,
     description='',
     start_time=None,
     end_time=None,
@@ -246,7 +246,7 @@ def create_event(
 
     Parameters
 
-    ``event_type``
+    ``type``
         can be either an ``EventType`` object or 2-tuple of ``(abbreviation,label)``,
         from which an ``EventType`` is either created or retrieved.
 
@@ -262,16 +262,16 @@ def create_event(
 
     '''
 
-    if isinstance(event_type, tuple):
-        event_type, created = EventType.objects.get_or_create(
-            abbr=event_type[0],
-            label=event_type[1]
+    if isinstance(type, tuple):
+        type, created = EventType.objects.get_or_create(
+            abbr=type[0],
+            label=type[1]
         )
 
     event = Event.objects.create(
         title=title,
         description=description,
-        event_type=event_type
+        type=type
     )
 
     start_time = start_time or timezone.now().replace(
@@ -283,3 +283,23 @@ def create_event(
     end_time = end_time or (start_time + calendar_settings.DEFAULT_OCCURRENCE_DURATION)
     event.add_occurrences(start_time, end_time, **rrule_params)
     return event
+
+
+class EventStreamPage(Page, Skinable):
+    content = RichTextField()
+    type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
+
+    content_panels = [
+        FieldPanel('title', classname='full title'),
+        FieldPanel('content'),
+        FieldPanel('type'),
+        FieldPanel('page_skin'),
+    ]
+
+    @property
+    def upcoming_events(self):
+        asdf = Occurrence.objects.select_related('event').exclude(start_time__gt=datetime.now()+timedelta(90))
+        for x in asdf:
+            print(x)
+        return asdf
+
