@@ -3,7 +3,7 @@
 	height: 188px;
 	position: absolute;
 	/* background-color: #febd15; */
-	background: no-repeat center url('#{$root_url}images/bkg_hdr_kids.png');
+	background: no-repeat center url('/static/images/bkg_hdr_kids.png');
 	background-size: 73%;
 	z-index: -5;
 }
@@ -14,7 +14,7 @@
 .kids #footer-image{
 	width: 100%;
 	height: 199px;
-	background: no-repeat center bottom url('#{$root_url}images/bkg_kids.png');
+	background: no-repeat center bottom url('/static/images/bkg_kids.png');
 	background-size: 100% auto;
 	margin-top: 30px;
 }
