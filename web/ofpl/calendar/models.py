@@ -17,7 +17,7 @@ from wagtail.wagtailcore.fields import RichTextField
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from .conf import settings as calendar_settings
-from ..cms.models import Skinable
+from ..cms.models import Skinable, OfplPage
 from . import public_views
 
 class EventType(models.Model):
@@ -32,7 +32,7 @@ class EventType(models.Model):
         return self.label
 
 
-class EventRootSingleton(RoutablePageMixin, Page):
+class EventRootSingleton(RoutablePageMixin, OfplPage):
     content = RichTextField()
 
     content_panels = [
@@ -41,7 +41,7 @@ class EventRootSingleton(RoutablePageMixin, Page):
     ]
 
 
-class CalendarGridPage(RoutablePageMixin, Page, Skinable):
+class CalendarGridPage(RoutablePageMixin, OfplPage, Skinable):
     content = RichTextField()
 
     content_panels = [
@@ -60,7 +60,7 @@ class CalendarGridPage(RoutablePageMixin, Page, Skinable):
         return public_views.month_view(self, request, year, month)
 
 
-class Event(Page, Skinable):
+class Event(OfplPage, Skinable):
     type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
     what = RichTextField()
     when = RichTextField()
@@ -285,7 +285,7 @@ def create_event(
     return event
 
 
-class EventStreamPage(Page, Skinable):
+class EventStreamPage(OfplPage, Skinable):
     content = RichTextField()
     type = models.ForeignKey(EventType, verbose_name=_('event type'), on_delete=models.PROTECT)
 

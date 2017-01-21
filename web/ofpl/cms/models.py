@@ -2,7 +2,7 @@ from django.db import models
 from django import forms
 from django.shortcuts import redirect
 
-from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.models import Page, Orderable, Site
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, FieldRowPanel, MultiFieldPanel, \
     InlinePanel, PageChooserPanel, StreamFieldPanel
@@ -30,6 +30,46 @@ PAGE_SKIN_CHOICES = (
   ('kids', 'Kids'),
   ('teens', 'Teens'),
 )
+
+# Page Class Override
+class OfplPage(Page):
+
+    def __init__(self, *args, **kwargs):
+        super(OfplPage, self).__init__(*args, **kwargs)
+        if not self.id and not self.content_type_id:
+            self.content_type = ContentType.objects.get_for_model(self)
+
+    # Override url construction to be only slugs
+    def set_url_path(self, parent):
+        if parent:
+            parts = (parent.url_path + self.slug + '/').split('/')
+            if len(parts) <= 3:
+                self.url_path = "/".join(parts)
+            if 'events' in parts and len(parts) == 4:
+                self.url_path = "/".join(parts[0:2] + parts[-3:])
+            else:
+                self.url_path = "/".join(parts[0:2] + parts[-2:])
+        else:
+            self.url_path = '/'
+
+    # Redefine what makes a slug available or not since they all
+    # now exist in the same namespace
+    def _slug_is_available(slug, parent_page, page=None):
+        if parent_page is None:
+            return True
+
+        pages = super(OfplPage, self).objects.all()
+        if page:
+            pages = pages.not_page(page)
+
+        return not pages.filter(slug=slug).exists()
+
+    # The changing of a url slug no longer has an affect on the descendants
+    def _update_descendant_url_paths(self, old_url_path, new_url_path):
+        return
+
+    class Meta:
+        abstract = True
 
 
 # Global Streamfield definition
@@ -161,7 +201,7 @@ class HomePageCarouselItem(Orderable, CarouselItem):
     page = ParentalKey('cms.HomePage', related_name='carousel_items')
 
 
-class HomePage(Page, Skinable):
+class HomePage(OfplPage, Skinable):
     left_column = RichTextField()
     center_column = RichTextField()
 
@@ -180,7 +220,7 @@ class HomePage(Page, Skinable):
 
 # Standard Page
 
-class StandardPage(Page, Skinable):
+class StandardPage(OfplPage, Skinable):
     body = StreamField(StandardStreamBlock())
 
     search_fields = Page.search_fields + [
@@ -200,7 +240,7 @@ class FormField(AbstractFormField):
     page = ParentalKey('FormPage', related_name='form_fields')
 
 
-class FormPage(AbstractEmailForm):
+class FormPage(OfplPage, AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
@@ -221,7 +261,7 @@ class FormPage(AbstractEmailForm):
 
 # PageAlias Page (for redirecting to external URLs)
 
-class RedirectPage(Page, LinkFields):
+class RedirectPage(OfplPage, LinkFields):
 
     def serve(self, request):
         return redirect(self.link, permanent=False)
