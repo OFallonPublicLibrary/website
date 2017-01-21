@@ -46,7 +46,7 @@ class OfplPage(Page):
             if len(parts) <= 3:
                 self.url_path = "/".join(parts)
             if 'events' in parts and len(parts) == 4:
-                self.url_path = "/".join(parts[0:2] + parts[-3:])
+                self.url_path = "/".join(parts)
             else:
                 self.url_path = "/".join(parts[0:2] + parts[-2:])
         else:
